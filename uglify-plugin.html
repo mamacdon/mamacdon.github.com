@@ -23,24 +23,29 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 					};
 			},
 			run : function(selectedText, text, selection) {
-				var toFormat;
-				var selectionEmpty = selection.start === selection.end;
-				if (selectionEmpty) {
-					toFormat = text;
-				} else {
-					toFormat = selectedText;
-				}
-				
-				var ast = /*jsp.*/parse(toFormat);
-				ast = /*pro.*/ast_mangle(ast);
-				ast = /*pro.*/ast_squeeze(ast);
-				var final_code = /*pro.*/gen_code(ast);
-				var formatted = final_code;
-				
-				if (selectionEmpty) {
-					return {text:formatted};
-				} else {
-					return formatted;
+				try {
+					var toFormat;
+					var selectionEmpty = selection.start === selection.end;
+					if (selectionEmpty) {
+						toFormat = text;
+					} else {
+						toFormat = selectedText;
+					}
+					
+					var ast = /*jsp.*/parse(toFormat);
+					ast = /*pro.*/ast_mangle(ast);
+					ast = /*pro.*/ast_squeeze(ast);
+					var final_code = /*pro.*/gen_code(ast);
+					var formatted = final_code;
+					
+					if (selectionEmpty) {
+						return {text:formatted};
+					} else {
+						return formatted;
+					}
+				} catch (e) {
+					console.error(e);
+					return text;
 				}
 			}
 		});
