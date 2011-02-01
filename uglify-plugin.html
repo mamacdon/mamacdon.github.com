@@ -13,6 +13,42 @@
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	// for some reason the modules don't get loaded correctly? 
 
+window.onload = function() {
+	var provider = new eclipse.PluginProvider();
+	provider.registerServiceProvider("editorAction", {
+		info : function() {
+				return {
+					name : "Uglify JS",
+					img : "http://www.jsbeautifier.org/favicon.ico",
+					key : [ "u", false, false, true ] // alt+f
+				};
+		},
+		run : function(selectedText, text, selection) {
+			var toFormat;
+			var selectionEmpty = selection.start === selection.end;
+			if (selectionEmpty) {
+				toFormat = text;
+			} else {
+				toFormat = selectedText;
+			}
+			
+			var ast = /*jsp.*/parse(toFormat);
+			ast = /*pro.*/ast_mangle(ast);
+			ast = /*pro.*/ast_squeeze(ast);
+			var final_code = /*pro.*/gen_code(ast);
+			var formatted = final_code;
+			
+			if (selectionEmpty) {
+				return {text:formatted};
+			} else {
+				return formatted;
+			}
+		}
+	});
+	provider.connect();
+};
+
+/*
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
@@ -32,11 +68,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 				toFormat = selectedText;
 			}
 			
-			var ast = /*jsp.*/parse(toFormat);
-			ast = /*pro.*/ast_mangle(ast);
-			ast = /*pro.*/ast_squeeze(ast);
-			var final_code = /*pro.*/gen_code(ast);
-			var formatted = final_code;
+			
 			if (selectionEmpty) {
 				return {text:formatted};
 			} else {
@@ -61,6 +93,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 		upperPlugin.start();
 	};
 }());
+*/
 
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
