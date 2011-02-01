@@ -12,8 +12,9 @@
 	<script>
 
 (function() {
-	var jsp = require({paths: {"uglify": "/uglify/lib"}}, "uglify/parse-js");
-	var pro = require({paths: {"uglify": "/uglify/lib"}}, "uglify/process");
+// {paths: {"uglify": "/uglify/lib"}}
+	var jsp = require("uglify/lib/parse-js");
+	var pro = require("uglify/lib/process");
 	
 	function UglifierProvider() {}
 	
