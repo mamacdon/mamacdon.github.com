@@ -5,16 +5,12 @@
 	<title>Uglify plugin for Orion</title>
 </head>
 <body>
-
 	<script src="require.js"></script>
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
 	<script>
 
-(function() {
-// {paths: {"uglify": "/uglify/lib"}}
-	var jsp = require("uglify/parse-js.js");
-	var pro = require("uglify/process.js");
+require(["uglify/parse-js.js", "uglify/process.js"], function(jsp, pro) {
 	
 	function UglifierProvider() {}
 	
@@ -70,7 +66,7 @@
 		var upperPlugin = new window.eclipse.Plugin(pluginData, serviceProvider);
 		upperPlugin.start();
 	};
-}());
+};
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
 </body>
