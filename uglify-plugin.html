@@ -10,7 +10,9 @@
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
 	<script>
-require(["uglify/lib/parse-js", "uglify/lib/process"], function(jsp, pro) {
+require({
+    baseUrl: "/",
+}, ["uglify/lib/parse-js", "uglify/lib/process"], function(jsp, pro) {
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
