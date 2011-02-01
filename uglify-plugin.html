@@ -16,7 +16,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	alert("loaded some crap");
 });
 
-(function(){
+(function() {
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
@@ -48,7 +48,6 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 			}
 		}
 	});
-	
 
 	window.onload = function() {
 		var pluginData = {
@@ -66,6 +65,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 		upperPlugin.start();
 	};
 }());
+
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
 </body>
