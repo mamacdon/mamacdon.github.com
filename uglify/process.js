@@ -62,7 +62,7 @@ var exports = exports || {};
 
  ***********************************************************************/
 
-var jsp = require("/uglify/parse-js"), //var jsp = require("./parse-js"),
+var jsp = window, //var jsp = require("./parse-js"),
     slice = jsp.slice,
     member = jsp.member,
     PRECEDENCE = jsp.PRECEDENCE,
