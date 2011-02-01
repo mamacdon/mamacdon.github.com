@@ -11,6 +11,7 @@
 	<script>
 
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
+	// for some reason the modules don't get loaded correctly? 
 
 	function UglifierProvider() {}
 	
@@ -31,10 +32,10 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 				toFormat = selectedText;
 			}
 			
-			var ast = jsp.parse(toFormat);
-			ast = pro.ast_mangle(ast);
-			ast = pro.ast_squeeze(ast);
-			var final_code = pro.gen_code(ast);
+			var ast = /*jsp.*/parse(toFormat);
+			ast = /*pro.*/ast_mangle(ast);
+			ast = /*pro.*/ast_squeeze(ast);
+			var final_code = /*pro.*/gen_code(ast);
 			var formatted = final_code;
 			if (selectionEmpty) {
 				return {text:formatted};
