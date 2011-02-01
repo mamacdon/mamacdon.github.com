@@ -1,3 +1,7 @@
+var exports = exports || {};
+
+
+
 /***********************************************************************
 
   A JavaScript tokenizer / parser / beautifier / compressor.

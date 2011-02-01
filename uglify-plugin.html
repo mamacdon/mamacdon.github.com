@@ -8,19 +8,13 @@
 	<script src="require.js"></script>
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
-	<script>
-// write once, run anywhere!
-if (typeof window.exports !== "undefined") {
-	window.exports = {};
-}
-	</script>
-<!--	<script src="uglify/parse-js.js"></script>
-	<script src="uglify/process.js"></script> -->
+	<script src="uglify/parse-js.js"></script>
+	<script src="uglify/process.js"></script>
 	<script>
 
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
+	alert("loaded some crap");
 }
-
 
 (function(){
 	function UglifierProvider() {}
