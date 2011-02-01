@@ -11,8 +11,10 @@
 	<script src="plugin.js"></script>
 	<script>
 require({
-    baseUrl: "/",
-}, ["uglify/lib/parse-js", "uglify/lib/process"], function(jsp, pro) {
+	paths: {
+		"uglify": "/uglify/lib"
+	}
+}, ["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
