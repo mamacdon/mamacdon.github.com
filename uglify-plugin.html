@@ -8,12 +8,19 @@
 	<script src="require.js"></script>
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
+	<script>
+// write once, run anywhere!
+if (typeof window.exports !== "undefined") {
+	window.exports = {};
+}
+	</script>
 	<script src="uglify/parse-js.js"></script>
 	<script src="uglify/process.js"></script>
 	<script>
 
 //require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
-	
+
+
 (function(){
 	function UglifierProvider() {}
 	
@@ -47,12 +54,6 @@
 		}
 	});
 	
-	// Add support for CommonJS. Just put this file somewhere on your require.paths
-	// and you will be able to `var jsp = require("uglify").uglify`.
-//	if (typeof exports !== "undefined") {
-//		exports.parse = jsp;
-//		exports.process = pro;
-//	}
 
 	window.onload = function() {
 		var pluginData = {
