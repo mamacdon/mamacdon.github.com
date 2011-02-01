@@ -10,7 +10,7 @@
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
 	<script>
-require("uglify/lib/parse-js", "uglify/lib/process"), function(jsp, pro) {
+require(["uglify/lib/parse-js", "uglify/lib/process"], function(jsp, pro) {
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
@@ -34,7 +34,6 @@ require("uglify/lib/parse-js", "uglify/lib/process"), function(jsp, pro) {
 			ast = pro.ast_mangle(ast);
 			ast = pro.ast_squeeze(ast);
 			var final_code = pro.gen_code(ast);
-			
 			var formatted = final_code;
 			if (selectionEmpty) {
 				return {text:formatted};
