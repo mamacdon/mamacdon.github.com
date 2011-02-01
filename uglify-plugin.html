@@ -8,10 +8,13 @@
 	<script src="require.js"></script>
 	<script src="OpenAjaxManagedHub-all.js"></script>
 	<script src="plugin.js"></script>
+	<script src="uglify/parse-js.js"></script>
+	<script src="uglify/process.js"></script>
 	<script>
 
-require(["uglify/parse-js.js", "uglify/process.js"], function(jsp, pro) {
+//require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	
+(function(){
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
@@ -66,7 +69,7 @@ require(["uglify/parse-js.js", "uglify/process.js"], function(jsp, pro) {
 		var upperPlugin = new window.eclipse.Plugin(pluginData, serviceProvider);
 		upperPlugin.start();
 	};
-});
+}());
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
 </body>
