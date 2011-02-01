@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Uglify plugin for Orion</title>
+</head>
+<body>
+	<script src="http://requirejs.org/docs/release/0.22.0/minified/require.js"></script>
+	<script src="OpenAjaxManagedHub-all.js"></script>
+	<script src="http://bokowski.github.com/plugin.js"></script>
+	<script>
+(function(){
+	function UglifierProvider() {}
+	
+	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
+		info : function() {
+			return {
+				name : "Uglify JS",
+				img : "http://www.github.com/favicon.ico",
+				key : [ "u", false, false, true ] // alt+u
+			};
+		},
+		run : function(selectedText, text, selection) {
+			var toFormat;
+			var selectionEmpty = selection.start === selection.end;
+			if (selectionEmpty) {
+				toFormat = text;
+			} else {
+				toFormat = selectedText;
+			}
+			var formatted = uglify(toFormat, {indent_size: 1, indent_char: '\t'});
+			if (selectionEmpty) {
+				return {text:formatted};
+			} else {
+				return formatted;
+			}
+		}
+	});
+	
+	// Add support for CommonJS. Just put this file somewhere on your require.paths
+	// and you will be able to `var uglify = require("uglify").uglify`.
+	if (typeof exports !== "undefined") {
+		exports.uglify = uglify;
+	}
+
+	window.onload = function() {
+		var pluginData = {
+			services : [{
+				id : "UglifyEditorAction", 
+				serviceType : {
+					id: "editorAction", 
+					interfaces : ["info","run"]
+				},
+				properties: {}
+			}]
+		};
+		var serviceProvider = new UglifierProvider();
+		var upperPlugin = new window.eclipse.Plugin(pluginData, serviceProvider);
+		upperPlugin.start();
+	};
+}());
+	</script>
+<h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
+</body>
+</html>
