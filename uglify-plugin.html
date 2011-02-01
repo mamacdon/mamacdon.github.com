@@ -7,10 +7,10 @@
 <body>
 
 	<script src="http://requirejs.org/docs/release/0.22.0/minified/require.js"></script>
-	<script src="http://bokowski.github.com/OpenAjaxManagedHub-all.js"></script>
-	<script src="http://bokowski.github.com/plugin.js"></script>
+	<script src="OpenAjaxManagedHub-all.js"></script>
+	<script src="plugin.js"></script>
 	<script>
-(function(){
+require("uglify/lib/parse-js", "uglify/lib/process"), function(jsp, pro) {
 	function UglifierProvider() {}
 	
 	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
@@ -29,7 +29,13 @@
 			} else {
 				toFormat = selectedText;
 			}
-			var formatted = uglify(toFormat, {indent_size: 1, indent_char: '\t'});
+			
+			var ast = jsp.parse(toFormat);
+			ast = pro.ast_mangle(ast);
+			ast = pro.ast_squeeze(ast);
+			var final_code = pro.gen_code(ast);
+			
+			var formatted = final_code;
 			if (selectionEmpty) {
 				return {text:formatted};
 			} else {
@@ -39,10 +45,11 @@
 	});
 	
 	// Add support for CommonJS. Just put this file somewhere on your require.paths
-	// and you will be able to `var uglify = require("uglify").uglify`.
-	if (typeof exports !== "undefined") {
-		exports.uglify = uglify;
-	}
+	// and you will be able to `var jsp = require("uglify").uglify`.
+//	if (typeof exports !== "undefined") {
+//		exports.parse = jsp;
+//		exports.process = pro;
+//	}
 
 	window.onload = function() {
 		var pluginData = {
@@ -59,7 +66,7 @@
 		var upperPlugin = new window.eclipse.Plugin(pluginData, serviceProvider);
 		upperPlugin.start();
 	};
-}());
+});
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
 </body>
