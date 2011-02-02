@@ -18,7 +18,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 			info : function() {
 					return {
 						name : "Uglify JS",
-						img : "http://www.github.com/favicon.ico",
+						img : "http://mamacdon.github.com/img/compress.png",
 						key : [ "u", false, false, true ] // alt+f
 					};
 			},
@@ -53,53 +53,6 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 		provider.connect();
 	};
 });
-
-/*
-	function UglifierProvider() {}
-	
-	UglifierProvider.prototype = window.eclipse.ServiceProvider.extend({
-		info : function() {
-			return {
-				name : "Uglify JS",
-				img : "http://www.github.com/favicon.ico",
-				key : [ "u", false, false, true ] // alt+u
-			};
-		},
-		run : function(selectedText, text, selection) {
-			var toFormat;
-			var selectionEmpty = selection.start === selection.end;
-			if (selectionEmpty) {
-				toFormat = text;
-			} else {
-				toFormat = selectedText;
-			}
-			
-			
-			if (selectionEmpty) {
-				return {text:formatted};
-			} else {
-				return formatted;
-			}
-		}
-	});
-
-	window.onload = function() {
-		var pluginData = {
-			services : [{
-				id : "UglifyEditorAction", 
-				serviceType : {
-					id: "editorAction", 
-					interfaces : ["info","run"]
-				},
-				properties: {}
-			}]
-		};
-		var serviceProvider = new UglifierProvider();
-		var upperPlugin = new window.eclipse.Plugin(pluginData, serviceProvider);
-		upperPlugin.start();
-	};
-}());
-*/
 
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> code editor.</h2>
