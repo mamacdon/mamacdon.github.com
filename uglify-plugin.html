@@ -41,7 +41,11 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 					if (selectionEmpty) {
 						return {text:formatted};
 					} else {
-						return formatted;
+						var diff = selectedText.length - formatted.length;
+						return {
+							text: formatted,
+							selection: {start: selection.start, end: selection.end - diff}
+						};
 					}
 				} catch (e) {
 					console.error(e);
