@@ -43,7 +43,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 					} else {
 						var diff = selectedText.length - formatted.length;
 						return {
-							text: formatted,
+							text: text.substring(0,selection.start) + formatted + text.substring(selection.end, text.length)),
 							selection: {start: selection.start, end: selection.end - diff}
 						};
 					}
