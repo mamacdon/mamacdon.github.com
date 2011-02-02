@@ -11,7 +11,7 @@
 
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	// for some reason the modules don't get loaded correctly? 
-
+	
 	window.onload = function() {
 		var provider = new eclipse.PluginProvider();
 		provider.registerServiceProvider("editorAction", {
@@ -19,7 +19,7 @@ require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 					return {
 						name : "Uglify JS",
 						img : "http://mamacdon.github.com/img/compress.png",
-						key : [ "u", false, false, true ] // alt+f
+						key : [ "u", false, false, true ] // alt+u
 					};
 			},
 			run : function(selectedText, text, selection) {
