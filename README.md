@@ -1,16 +1,14 @@
 Hello
-
+=====
 Perhaps you are looking for the Orion plug-in that is hosted here.
 
-Installing into Orion M5
------------------------
+### Installing into Orion M5
 Use this URL:
-`[http://mamacdon.github.com/uglify-plugin.html](http://mamacdon.github.com/uglify-plugin.html)`
+[http://mamacdon.github.com/uglify-plugin.html](http://mamacdon.github.com/uglify-plugin.html)
 
-Installing into Orion HEAD (pre-M6)
------------------------------------
+### Installing into Orion HEAD (pre-M6)
 Use this URL:
-`[http://mamacdon.github.com/uglify-plugin-HEAD.html](http://mamacdon.github.com/uglify-plugin-HEAD.html)`
+[http://mamacdon.github.com/uglify-plugin-HEAD.html](http://mamacdon.github.com/uglify-plugin-HEAD.html)
 
 How do I install a plug-in?
 ---------------------------
