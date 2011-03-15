@@ -5,11 +5,11 @@ Here's how to install a plugin for Orion that runs uglify-js.
 
 ### For Orion M6:
 Use this URL:
-[http://mamacdon.github.com/uglify-plugin-HEAD.html](http://mamacdon.github.com/uglify-plugin-HEAD.html)
+[http://mamacdon.github.com/uglify-plugin-HEAD.html](http://mamacdon.github.com/uglify-plugin-M6.html)
 
 ### For Orion M5:
 Use this URL:
-[http://mamacdon.github.com/uglify-plugin.html](http://mamacdon.github.com/uglify-plugin.html)
+[http://mamacdon.github.com/uglify-plugin.html](http://mamacdon.github.com/uglify-plugin-M5.html)
 
 
 How do I install a plug-in?
