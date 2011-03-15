@@ -6,19 +6,17 @@
 </head>
 <body>
 	<script src="require.js"></script>
-	<script src="orion-plugin-min-M5.js"></script>
+	<script src="orion-plugin-min.js"></script>
 	<script>
 
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
-	// for some reason the modules don't get loaded correctly? 
-	
 	window.onload = function() {
 		var provider = new eclipse.PluginProvider();
 		provider.registerServiceProvider("editorAction", {
 			info : function() {
 					return {
 						name : "Uglify JS",
-						img : "http://mamacdon.github.com/img/compress.png",
+						img : "http://mamacdon.github.com/m5/uglify/compress.png",
 						key : [ "u", false, false, true ] // alt+u
 					};
 			},
