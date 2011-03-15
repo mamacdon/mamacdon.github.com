@@ -12,45 +12,47 @@
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
 	window.onload = function() {
 		var provider = new eclipse.PluginProvider();
-		provider.registerServiceProvider("editorAction", {
-			info : {
+		provider.registerServiceProvider("editorAction",
+			{
+				run : function(selectedText, text, selection) {
+					try {
+						var toFormat;
+						var selectionEmpty = selection.start === selection.end;
+						if (selectionEmpty) {
+							toFormat = text;
+						} else {
+							toFormat = selectedText;
+						}
+						
+						var ast = /*jsp.*/parse(toFormat);
+						ast = /*pro.*/ast_mangle(ast);
+						ast = /*pro.*/ast_squeeze(ast);
+						var final_code = /*pro.*/gen_code(ast);
+						var formatted = final_code;
+						
+						if (selectionEmpty) {
+							return {text:formatted};
+						} else {
+							var diff = selectedText.length - formatted.length;
+							// Replace whole buffer contents so we can set the selection too.
+							return {
+								text: text.substring(0,selection.start) + formatted + text.substring(selection.end, text.length),
+								selection: {start: selection.start, end: selection.end - diff}
+							};
+						}
+					} catch (e) {
+						console.error(e);
+						window.alert(e);
+						return selectedText;
+					}
+				
+			},
+			/* metadata */
+			{
 				name : "Uglify JS",
 				img : "mamacdon.github.com/m6/uglify/compress.png",
 				key : [ "u", false, false, true ] // alt+u
-			},
-			run : function(selectedText, text, selection) {
-				try {
-					var toFormat;
-					var selectionEmpty = selection.start === selection.end;
-					if (selectionEmpty) {
-						toFormat = text;
-					} else {
-						toFormat = selectedText;
-					}
-					
-					var ast = /*jsp.*/parse(toFormat);
-					ast = /*pro.*/ast_mangle(ast);
-					ast = /*pro.*/ast_squeeze(ast);
-					var final_code = /*pro.*/gen_code(ast);
-					var formatted = final_code;
-					
-					if (selectionEmpty) {
-						return {text:formatted};
-					} else {
-						var diff = selectedText.length - formatted.length;
-						// Replace whole buffer contents so we can set the selection too.
-						return {
-							text: text.substring(0,selection.start) + formatted + text.substring(selection.end, text.length),
-							selection: {start: selection.start, end: selection.end - diff}
-						};
-					}
-				} catch (e) {
-					console.error(e);
-					window.alert(e);
-					return selectedText;
-				}
-			}
-		});
+			});
 		provider.connect();
 	};
 });
