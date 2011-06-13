@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="copyright" content="Copyright (c) IBM Corporation and others 2011.">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="../orion/plugin.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	var provider = new eclipse.PluginProvider();
+	
+	var blob = {
+			"fileTypes": [ "json" ],
+			"foldingStartMarker": "(?x:       # turn on extended mode\\\\u000a                          ^        # a line beginning with\\\\u000a                          \\\\\\\\s*      # some optional space\\\\u000a                          [{\\\\\\\\[]    # the start of an object or array\\\\u000a                          (?!      # but not followed by\\\\u000a                            .*     # whatever\\\\u000a                            [}\\\\\\\\]]  # and the close of an object or array\\\\u000a                            ,?     # an optional comma\\\\u000a                            \\\\\\\\s*    # some optional space\\\\u000a                            $      # at the end of the line\\\\u000a                          )\\\\u000a                          |        # ...or...\\\\u000a                          [{\\\\\\\\[]    # the start of an object or array\\\\u000a                          \\\\\\\\s*      # some optional space\\\\u000a                          $        # at the end of the line\\\\u000a                        )",
+			"foldingStopMarker": "(?x:     # turn on extended mode\\\\u000a                         ^      # a line beginning with\\\\u000a                         \\\\\\\\s*    # some optional space\\\\u000a                         [}\\\\\\\\]]  # and the close of an object or array\\\\u000a                       )",
+			"keyEquivalent": "^~J",
+			"name": "JSON",
+			"patterns": [ {
+				"include": "#value"
+			} ],
+			"repository": {
+				"array": {
+					"begin": "\\\\\\\\[",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.array.begin.json"
+						}
+					},
+					"end": "\\\\\\\\]",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.array.end.json"
+						}
+					},
+					"name": "meta.structure.array.json",
+					"patterns": [ {
+						"include": "#value"
+					}, {
+						"match": ",",
+						"name": "punctuation.separator.array.json"
+					}, {
+						"match": "[^\\\\\\\\s\\\\\\\\]]",
+						"name": "invalid.illegal.expected-array-separator.json"
+					} ]
+				},
+				"constant": {
+					"match": "\\\\\\\\b(?:true|false|null)\\\\\\\\b",
+					"name": "constant.language.json"
+				},
+				"number": {
+					"comment": "handles integer and decimal numbers",
+					"match": "(?x:         # turn on extended mode\\\\u000a\\\\u0009\\\\u0009\\\\u0009             -?         # an optional minus\\\\u000a\\\\u0009\\\\u0009\\\\u0009             (?:\\\\u000a\\\\u0009\\\\u0009\\\\u0009               0        # a zero\\\\u000a\\\\u0009\\\\u0009\\\\u0009               |        # ...or...\\\\u000a\\\\u0009\\\\u0009\\\\u0009               [1-9]    # a 1-9 character\\\\u000a\\\\u0009\\\\u0009\\\\u0009               \\\\\\\\d*      # followed by zero or more digits\\\\u000a\\\\u0009\\\\u0009\\\\u0009             )\\\\u000a\\\\u0009\\\\u0009\\\\u0009             (?:\\\\u000a\\\\u0009\\\\u0009\\\\u0009               (?:\\\\u000a\\\\u0009\\\\u0009\\\\u0009                 \\\\\\\\.     # a period\\\\u000a\\\\u0009\\\\u0009\\\\u0009                 \\\\\\\\d+    # followed by one or more digits\\\\u000a\\\\u0009\\\\u0009\\\\u0009               )?\\\\u000a\\\\u0009\\\\u0009\\\\u0009               (?:\\\\u000a\\\\u0009\\\\u0009\\\\u0009                 [eE]   # an e character\\\\u000a\\\\u0009\\\\u0009\\\\u0009                 [+-]?  # followed by an option +/-\\\\u000a\\\\u0009\\\\u0009\\\\u0009                 \\\\\\\\d+    # followed by one or more digits\\\\u000a\\\\u0009\\\\u0009\\\\u0009               )?       # make exponent optional\\\\u000a\\\\u0009\\\\u0009\\\\u0009             )?         # make decimal portion optional\\\\u000a\\\\u0009\\\\u0009\\\\u0009           )",
+					"name": "constant.numeric.json"
+				},
+				"object": {
+					"begin": "\\\\\\\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.dictionary.begin.json"
+						}
+					},
+					"comment": "a JSON object",
+					"end": "\\\\\\\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.dictionary.end.json"
+						}
+					},
+					"name": "meta.structure.dictionary.json",
+					"patterns": [ {
+						"comment": "the JSON object key",
+						"include": "#string"
+					}, {
+						"begin": ":",
+						"beginCaptures": {
+							"0": {
+								"name": "punctuation.separator.dictionary.key-value.json"
+							}
+						},
+						"end": "(,)|(?=\\\\\\\\})",
+						"endCaptures": {
+							"1": {
+								"name": "punctuation.separator.dictionary.pair.json"
+							}
+						},
+						"name": "meta.structure.dictionary.value.json",
+						"patterns": [ {
+							"comment": "the JSON object value",
+							"include": "#value"
+						}, {
+							"match": "[^\\\\\\\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.json"
+						} ]
+					}, {
+						"match": "[^\\\\\\\\s\\\\\\\\}]",
+						"name": "invalid.illegal.expected-dictionary-separator.json"
+					} ]
+				},
+				"string": {
+					"begin": "\\\\\\\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.json"
+						}
+					},
+					"end": "\\\\\\\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.json"
+						}
+					},
+					"name": "string.quoted.double.json",
+					"patterns": [
+							{
+								"match": "(?x:                # turn on extended mode\\\\u000a                     \\\\\\\\\\\\\\\\                # a literal backslash\\\\u000a                     (?:               # ...followed by...\\\\u000a                       [\\\\\\\"\\\\\\\\\\\\\\\\/bfnrt]     # one of these characters\\\\u000a                       |               # ...or...\\\\u000a                       u               # a u\\\\u000a                       [0-9a-fA-F]{4}  # and four hex digits\\\\u000a                     )\\\\u000a                   )",
+								"name": "constant.character.escape.json"
+							}, {
+								"match": "\\\\\\\\\\\\\\\\.",
+								"name": "invalid.illegal.unrecognized-string-escape.json"
+							} ]
+				},
+				"value": {
+					"comment": "the 'value' diagram at http://json.org",
+					"patterns": [ {
+						"include": "#constant"
+					}, {
+						"include": "#number"
+					}, {
+						"include": "#string"
+					}, {
+						"include": "#array"
+					}, {
+						"include": "#object"
+					} ]
+				}
+			},
+			"scopeName": "source.json",
+			"uuid": "0C3868E4-F96B-4E55-B204-1DCB5A20748B"
+		};
+
+		// Syntax highlighting for JSON
+		(function() {
+			var serviceImpl = { /* Grammar-based, so no service impl. All data is in properties */};
+			var serviceProperties = {
+				type: "grammar",
+				fileTypes: [ "json" ],
+				grammar: blob
+			};
+			provider.registerServiceProvider("orion.edit.highlighter", serviceImpl, serviceProperties);
+		}());
+		
+		// Associate the Orion editor with .json files
+		(function() {
+			var serviceImpl = {};
+			var serviceProperties = {
+				name: "Orion web editor",
+				href: "/edit/edit.html#${Location}",
+				validationProperties: {Name: "*.(json)"}
+			};
+			provider.registerServiceProvider("orion.navigate.openWith", serviceImpl, serviceProperties);
+		}());
+
+		provider.connect();
+	};
+</script>
+</head>
+<body>
+</body>
+</html>
