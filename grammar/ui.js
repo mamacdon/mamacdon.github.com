@@ -7,27 +7,32 @@ require(["plist2js/plist2js"], function(m_plist2js) {
 			document.getElementById("result").value = text;
 			document.getElementById("resultDiv").style.display = "block";
 		}
-		function getXmlDocument(/**String*/ text) {
+		/** @returns {Document} */
+		function parseXmlDocument(/**String*/ text) {
+			var xmlDoc;
 			if (window.DOMParser) {
 				var parser = new DOMParser();
-				return parser.parseFromString(text);
+				xmlDoc = parser.parseFromString(text, "text/xml");
 			} else {
-				var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+				xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 				xmlDoc.async = "false";
 				xmlDoc.loadXML(text);
-				return xmlDoc;
 			}
+			if (!xmlDoc) {
+				throw new Error("Couldn't parse the file (are you sure it's a PList XML file?)");
+			}
+			return xmlDoc;
 		}
 		function convert(/**String*/ plist) {
 			if (plist.replace(/^\s+|\s+$/g, "") === "") {
 				show("You didn't provide a .tmLanguage file :(");
 			} else {
 				try {
-					var xmlDoc = getXmlDocument(plist);
-					var result = m_plist2js.convert(plist);
+					var xmlDoc = parseXmlDocument(plist);
+					var result = m_plist2js.convertToString(xmlDoc);
 					show(result);
 				} catch (e) {
-					show("An error occurred: " + e);
+					show(e);
 				}
 			}
 		}
