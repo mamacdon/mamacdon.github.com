@@ -1,7 +1,7 @@
 /*jslint browser:true*/
 /*global DOMParser ActiveXObject require window*/
 
-require(["plist2js/plist2js"], function(m_plist2js) {
+require(["plist2js/plist2js", "beautify/beautify"], function(m_plist2js, m_jsbeautify) {
 	require.ready(function() {
 		function show(/**String*/ text) {
 			document.getElementById("result").value = text;
@@ -37,10 +37,30 @@ require(["plist2js/plist2js"], function(m_plist2js) {
 			}
 		}
 		
+		var textarea = document.getElementById("textarea");
+		
 		// Click
 		document.getElementById("convert").onclick = function() {
-			var xml = document.getElementById("textarea").value;
-			convert(xml);
+			convert(textarea.value);
+		};
+		document.getElementById("cleanup").onclick = function() {
+			var resultTextarea = document.getElementById("result");
+			var options = { indent_size: 1, indent_char: "\t" };
+			resultTextarea.value = m_jsbeautify.js_beautify(resultTextarea.value, options);
+		};
+		
+		// Change
+		var lastFired;
+		textarea.onkeyup = function() {
+			lastFired = +new Date();
+			var makeFunc = function(mytime) {
+				return function() {
+					if (lastFired === mytime) {
+						convert(textarea.value);
+					}
+				};
+			};
+			window.setTimeout(makeFunc(lastFired), 300);
 		};
 		
 		// DnD
@@ -49,7 +69,6 @@ require(["plist2js/plist2js"], function(m_plist2js) {
 				e.stopPropagation();
 				e.preventDefault();
 			};
-			var textarea = document.getElementById("textarea");
 			
 			textarea.ondragover = function(e) {
 				kill(e);
