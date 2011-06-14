@@ -2,26 +2,43 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Example Orion plug-ins</title>
+		<title>Orion stuff</title>
 		<style type="text/css">
-			body>ul {
+			body {
+				font-family: sans-serif;
+			}
+			ul, table {
+				margin-top: 0.5em;
 			}
 			body>ul>li {
-				padding-bottom: 1em;
+				padding-bottom: 0.2em;
+			}
+			h3 {
+				padding-top: 0.5em;
+				margin-bottom: 0;
+			}
+			.content {
+				padding-left: 1em;
 			}
 			.pluginName { font-weight: bold; margin-bottom: 1em;}
 			.dl { text-align: center; }
+			.contact {
+				font-style: italic;
+				font-size: small;
+				padding-top: 1em;
+			}
 		</style>
 	</head>
 
 <body>
-	<h1>Example Orion plug-ins for you:</h1>
-	
-	<table border="1" cellspacing="2" cellpadding="4" style="width:800px;">
+<h1>Orion goodies</h1>
+<div class="content">
+	<h3>Example plugins</h3>
+	<table border="1" cellspacing="2" cellpadding="4" style="width:850px;">
 		<tr>
 			<th>Description</th>
-			<th>Orion M5</th>
 			<th>Orion M6/M7</th>
+			<th>Orion 0.2</th>
 		</tr>
 		<tr>
 			<td>
@@ -29,12 +46,12 @@
 				<div class="pluginDesc">Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.</div>
 			</td>
 			<td class="dl">
-				<a href="http://mamacdon.github.com/m5/beautify/jsbeautify.html">Plugin</a>, 
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m5/beautify">Source</a>
+				<a href="/m6/beautify/jsbeautify.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify">Source</a>
 			</td>
 			<td class="dl">
-				<a href="http://mamacdon.github.com/m6/beautify/jsbeautify.html">Plugin</a>, 
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify">Source</a>
+				<a href="/0.2/plugins/beautify/jsbeautify.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/beautify">Source</a>
 			</td>
 		</tr>
 		<tr>
@@ -43,16 +60,39 @@
 				<div class="pluginDesc">Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.</div>
 			</td>
 			<td class="dl">
-				<a href="http://mamacdon.github.com/m5/uglify/uglify-plugin.html">Plugin</a>, 
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m5/uglify">Source</a>
+				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify">Source</a>
 			</td>
 			<td class="dl">
-				<a href="http://mamacdon.github.com/m6/uglify/uglify-plugin.html">Plugin</a>, 
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify">Source</a>
+				<a href="/0.2/plugins/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify">Source</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="pluginName">reverse</div>
+				<div class="pluginDesc">A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/How_Tos/Writing_a_plugin">tutorial</a>.</div>
+			</td>
+			<td class="dl">
+				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse">Source</a>
+			</td>
+			<td class="dl">
+				<a href="/0.2/plugins/reverse/reversePlugin.html">Plugin</a>, 
+				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse">Source</a>
 			</td>
 		</tr>
 	</table>
-	
-	<p>For installation instructions, read <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">Installing A Plugin</a> at the Orion wiki.</p>
+	<h3>Tools</h3>
+	<ul>
+		<li><a href="/0.2/tools/grammar">TextMate-to-Orion grammar converter</a></li>
+	</ul>
+	<h3>See also</h3>
+	<ul>
+		<li><a href="http://wiki.eclipse.org/Orion/">Orion wiki</a></li>
+		<li><a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">Installing a Plugin</a></li>
+	</ul>
+	<div class="contact">Maintained by: <a href="https://github.com/mamacdon">mamacdon</a></div>
+</div>
 </body>
 </html>
