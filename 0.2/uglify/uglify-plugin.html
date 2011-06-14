@@ -9,51 +9,55 @@
 	<script src="plugin.js"></script>
 	<script>
 require(["uglify/parse-js", "uglify/process"], function(jsp, pro) {
-	window.onload = function() {
+	require.ready(function() {
 		var provider = new eclipse.PluginProvider();
-		provider.registerServiceProvider("editorAction", {
-			run : function(selectedText, text, selection) {
-				try {
-					var toFormat;
-					var selectionEmpty = selection.start === selection.end;
-					if (selectionEmpty) {
-						toFormat = text;
-					} else {
-						toFormat = selectedText;
+		provider.registerServiceProvider("orion.edit.command",
+			{
+				run : function(selectedText, text, selection) {
+					try {
+						var toFormat;
+						var selectionEmpty = selection.start === selection.end;
+						if (selectionEmpty) {
+							toFormat = text;
+						} else {
+							toFormat = selectedText;
+						}
+						
+						var ast = /*jsp.*/parse(toFormat);
+						ast = /*pro.*/ast_mangle(ast);
+						ast = /*pro.*/ast_squeeze(ast);
+						var final_code = /*pro.*/gen_code(ast);
+						var formatted = final_code;
+						
+						if (selectionEmpty) {
+							return {text:formatted};
+						} else {
+							var diff = selectedText.length - formatted.length;
+							// Replace whole buffer contents so we can set the selection too.
+							return {
+								text: text.substring(0,selection.start) + formatted + text.substring(selection.end, text.length),
+								selection: {start: selection.start, end: selection.end - diff}
+							};
+						}
+					} catch (e) {
+						console.error(e);
+						window.alert(e);
+						return selectedText;
 					}
-					
-					var ast = /*jsp.*/parse(toFormat);
-					ast = /*pro.*/ast_mangle(ast);
-					ast = /*pro.*/ast_squeeze(ast);
-					var final_code = /*pro.*/gen_code(ast);
-					var formatted = final_code;
-					
-					if (selectionEmpty) {
-						return {text:formatted};
-					} else {
-						var diff = selectedText.length - formatted.length;
-						// Replace whole buffer contents so we can set the selection too.
-						return {
-							text: text.substring(0,selection.start) + formatted + text.substring(selection.end, text.length),
-							selection: {start: selection.start, end: selection.end - diff}
-						};
-					}
-				} catch (e) {
-					console.error(e);
-					window.alert(e);
-					return selectedText;
 				}
-			}
-		},
-		{ /* properties */
-			name : "Uglify JS",
-			img : "http://mamacdon.github.com/0.2/uglify/compress.png",
-			key : [ "u", false, false, true ] // alt+u
-		});
+			},
+			{
+				name : "Uglify JS",
+				img : "http://mamacdon.github.com/0.2/uglify/compress.png",
+				key : [ "u", false, false, true ] // alt+u
+			});
 		provider.connect();
-	};
+
+	});
 });
 
+window.onload = function() {
+};
 	</script>
 <h2>This is a <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">plugin</a> for the <a href="http://wiki.eclipse.org/Orion">Orion</a> editor.</h2>
 </body>
