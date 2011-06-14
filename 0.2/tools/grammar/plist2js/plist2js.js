@@ -98,7 +98,41 @@ define([], function() {
 		}
 	}
 	
+	function checkError(xmlDoc) {
+		function getParsererror(root) {
+			var s = [root];
+			while (s.length) {
+				var elem = s.pop();
+				if (elem.tagName === "parsererror") {
+					return elem;
+				}
+				var children = childElements(elem);
+				for (var i=0; i < children.length; i++) {
+					s.push(children[i]);
+				}
+			}
+			return null;
+		}
+		// Most browsers return an "error document" if there's a parse error
+		var root = xmlDoc.documentElement;
+		if (root.tagName === "parsererror") { // Firefox
+			throw new Error(root.firstChild.nodeValue + "\n" + root.childNodes[1].textContent);
+		} else {
+			// Find the parsererror element
+			var parsererror = getParsererror(root);
+			if (parsererror) {
+				var children = childElements(parsererror);
+				for (var i=0; i < children.length; i++) {
+					if (children[i].tagName === "div") {
+						throw new Error(children[i].textContent);
+					}
+				}
+			}
+		}
+	}
+	
 	exports.convert = function(doc) {
+		checkError(doc);
 		var root = childElements(doc)[0];
 		return toObject(root);
 	};
