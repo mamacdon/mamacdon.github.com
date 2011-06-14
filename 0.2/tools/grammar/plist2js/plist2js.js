@@ -1,9 +1,26 @@
-/*jslint */
+/*jslint*/
 /*global define Node*/
 
 // http://www.apple.com/DTDs/PropertyList-1.0.dtd
 define([], function() {
 	var exports = {};
+	
+	/** @returns {String} str enclosed in double-quotes and nicely escaped for JS */
+	function toLiteral(/**String*/ str) {
+		// Use JSON but undo its weirdness. Surely there is a better way
+		return JSON.stringify(str)
+			.replace(/\\u([0-9a-f]{4})/g, function(str, hex) {
+				var realchar = String.fromCharCode(parseInt(hex, 16));
+				switch(realchar) {
+					case "\n": return "\\n";
+					case "\r": return "\\r";
+					case "\t": return "\\t";
+					case "\b": return "\\b";
+					case "\f": return "\\f";
+					default: return realchar;
+				}
+			});
+	}
 	
 	/** @returns {String} */
 	function toSource(/**Object*/ obj) {
@@ -17,7 +34,7 @@ define([], function() {
 		switch (typeof obj) {
 			case "number":
 			case "string":
-				return JSON.stringify(obj); // gives us "" and escapes
+				return toLiteral(obj);
 			case "object":
 				var props = [];
 				for (var prop in obj) {
