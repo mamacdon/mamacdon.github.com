@@ -13,15 +13,29 @@
 			body>ul>li {
 				padding-bottom: 0.2em;
 			}
-			h3 {
+			h2, h3 {
 				padding-top: 0.5em;
 				margin-bottom: 0;
 			}
 			.content {
 				padding-left: 1em;
 			}
+			.pluginTable {
+				/*border="1" cellspacing="2" cellpadding="4" style="width:850px;"*/
+				border-spacing: 2px;
+				width: 850px;
+			}
+			.pluginTable, tr, td, th {
+				border: 1px inset;
+			}
+			.pluginTable td, .pluginTable th {
+				padding: 5px;
+			}
 			.pluginName { font-weight: bold; margin-bottom: 1em;}
 			.dl { text-align: center; }
+			.dl a:nth-child(1) {
+				padding-right: 0.5em;
+			}
 			.contact {
 				font-style: italic;
 				font-size: small;
@@ -33,8 +47,8 @@
 <body>
 <h1>Orion goodies</h1>
 <div class="content">
-	<h3>Example plugins</h3>
-	<table border="1" cellspacing="2" cellpadding="4" style="width:850px;">
+	<h3>Plugins</h3>
+	<table class="pluginTable">
 		<tr>
 			<th>Description</th>
 			<th>Orion M6/M7</th>
@@ -46,37 +60,37 @@
 				<div class="pluginDesc">Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.</div>
 			</td>
 			<td class="dl">
-				<a href="/m6/beautify/jsbeautify.html">Plugin</a>, 
+				<a href="/m6/beautify/jsbeautify.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify">Source</a>
 			</td>
 			<td class="dl">
-				<a href="/0.2/plugins/beautify/jsbeautify.html">Plugin</a>, 
+				<a href="/0.2/plugins/beautify/jsbeautify.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/beautify">Source</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div class="pluginName">uglify-plugin</div>
+				<div class="pluginName">uglify</div>
 				<div class="pluginDesc">Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.</div>
 			</td>
 			<td class="dl">
-				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify">Source</a>
 			</td>
 			<td class="dl">
-				<a href="/0.2/plugins/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="/0.2/plugins/uglify/uglify-plugin.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify">Source</a>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<div class="pluginName">csslintPlugin</div>
-				<div class="pluginDesc">A plugin that uses <a href="https://github.com/stubbornella/csslint">CSSlint</a> to provide validation on your .css files.</div>
+				<div class="pluginDesc">Provides validation on your .css files using <a href="https://github.com/stubbornella/csslint">CSS Lint</a>.</div>
 			</td>
 			<td class="dl">
 			</td>
 			<td class="dl">
-				<a href="/0.2/plugins/csslint/csslintPlugin.html">Plugin</a>, 
+				<a href="/0.2/plugins/csslint/csslintPlugin.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint">Source</a>
 			</td>
 		</tr>
@@ -86,11 +100,11 @@
 				<div class="pluginDesc">A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/How_Tos/Writing_a_plugin">tutorial</a>.</div>
 			</td>
 			<td class="dl">
-				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>, 
+				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse">Source</a>
 			</td>
 			<td class="dl">
-				<a href="/0.2/plugins/reverse/reversePlugin.html">Plugin</a>, 
+				<a href="/0.2/plugins/reverse/reversePlugin.html">Plugin</a>
 				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse">Source</a>
 			</td>
 		</tr>
