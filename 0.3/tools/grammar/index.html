@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grammar converter</title>
+	<style type="text/css">
+body {
+	height:100%;
+	font-family: sans-serif;
+	padding: 1em;
+}
+form {
+	width: 75%;
+	background-color: #eee;
+	padding: 1em;
+}
+#textarea {
+	height: 18em;
+	width: 100%;
+}
+#resultDiv {
+	display: none;
+	width: 75%;
+}
+#result {
+	width: 100%;
+	height: 18em;
+}
+.code {
+	font-family: monospace;
+}
+.drag {
+	border: 1px #aaa dashed;
+	background-color: #ddf;
+}
+	</style>
+	<script data-main="ui" src="require.js"></script>
+</head>
+<body>
+	<h1>Grammar converter</h1>
+	<form>
+		<p><textarea id="textarea"></textarea></p>
+		<p>Drag or paste a TextMate <span class="code">.tmLanguage</span> file into the textarea above. (Try <a href="http://svn.textmate.org/trunk/Bundles/JSON.tmbundle/Syntaxes/JSON.tmLanguage">this one</a>, for example.)</p>
+		<p><input type="button" id="convert" value="Convert it" />
+	</form>
+	<div id="resultDiv">
+		<p>Result:</p>
+		<p><textarea id="result"></textarea></p>
+		<p><input type="button" id="cleanup" value="Clean up" />
+	</div>
+</body>
+</html>
