@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Orion Bugzilla Plugin</title>
+    <script src="plugin.js"></script>
+    <script>
+    window.onload = function() {
+        var provider = new eclipse.PluginProvider();
+        var serviceImpl = {};
+        var serviceProperties = { 
+			pattern: "bug\\s\\d{4,7}",
+			words: 2,
+			anchor: "https://bugs.eclipse.org/bugs/show_bug.cgi?id=%2"
+		};
+        provider.registerServiceProvider("orion.core.linkScanner", serviceImpl, serviceProperties);
+        provider.connect();
+    };
+</script>
+</head>
+<body></body>
+</html>
