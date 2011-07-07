@@ -9,7 +9,7 @@
         var provider = new eclipse.PluginProvider();
         var serviceImpl = {};
         var serviceProperties = { 
-			pattern: /bug\s\d{4,7}/i,
+			pattern: "bug\\s\\d{4,7}",
 			words: 2,
 			anchor: "https://bugs.eclipse.org/bugs/show_bug.cgi?id=%2"
 		};
