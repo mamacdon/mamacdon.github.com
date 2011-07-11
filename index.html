@@ -32,6 +32,8 @@
 				padding: 5px;
 			}
 			.pluginName { font-weight: bold; margin-bottom: 1em;}
+			.pluginURL { font-weight: bold; margin-bottom: 0.5em; }
+			.pluginSource { }
 			.dl { text-align: center; }
 			.dl a:nth-child(1) {
 				padding-right: 0.5em;
@@ -43,82 +45,153 @@
 			}
 		</style>
 	</head>
+	<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+	var plugins = [
+		{	name: "jsbeautify",
+			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
+			versions: {
+				"0.2 M6/M7": [
+					"/m6/beautify/jsbeautify.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
+				],
+				"0.2": [
+					"/0.2/plugins/beautify/jsbeautify.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
+				],
+				"0.3": [
+					"/0.2/plugins/beautify/jsbeautify.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
+				]
+			}
+		},
+		{	name: "uglify",
+			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
+			versions: {
+				"0.2 M6/M7": [
+					"/m6/uglify/uglify-plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"
+				],
+				"0.2": [
+					"/0.2/plugins/uglify/uglify-plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
+				],
+				"0.3": [
+					"/0.2/plugins/uglify/uglify-plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
+				]
+			}
+		},
+		{	name: "csslint",
+			description: 'Provides validation on your .css files using <a href="https://github.com/stubbornella/csslint">CSS Lint</a>.',
+			versions: {
+				"0.2": [
+					"/0.2/plugins/csslint/csslintPlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint",
+				],
+				"0.3": [
+					"/0.2/plugins/csslint/csslintPlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint",
+				]
+			}
+		},
+		{	name: "reverse",
+			description: 'A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/Documentation/Developer_Guide/Simple_plugin_example">tutorial</a>.',
+			versions: {
+				"0.2 M6/M7": [
+					"/m6/uglify/uglify-plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse"
+				],
+				"0.2": [
+					"/0.2/plugins/reverse/reversePlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"
+				],
+				"0.3": [
+					"/0.2/plugins/reverse/reversePlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"
+				]
+			}
+		},
+		{	name: "bugzilla",
+			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">bugzilla integration</a> plugin for Orion.',
+			versions: {
+				"0.3": [
+					"/0.3/plugins/bugzilla/plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"
+				]
+			}
+		}];
 
+	function getVersions() {
+		var versions = {};
+		for (var i=0; i < plugins.length; i++) {
+			var plugin = plugins[i];
+			for (var prop in plugin.versions) {
+				if (plugin.versions.hasOwnProperty(prop)) {
+					versions[prop] = null;
+				}
+			}
+		}
+		var array = [];
+		for (prop in versions) {
+			array.push(prop);
+		}
+		return array;
+	}
+
+	function createTbody() {
+		var table = document.getElementById("pluginTable");
+		var versions = getVersions();
+		var headerRow = table.insertRow(-1);
+		var th = document.createElement("th");
+		th.innerHTML = "Description";
+		headerRow.appendChild(th);
+		for (var i=0; i < versions.length; i++) {
+			th = document.createElement("th");
+			th.innerHTML = "Orion " + versions[i];
+			headerRow.appendChild(th);
+		}
+		for (i=0; i < plugins.length; i++) {
+			var plugin = plugins[i];
+			var row = table.insertRow(-1);
+			var desc = row.insertCell(-1);
+			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' + '<div class="pluginDesc">' + plugin.description + '</div>';
+			for (var j=0; j < versions.length; j++) {
+				var cell = row.insertCell(-1);
+				var versionId = versions[j];
+				var pluginVersion = plugin.versions[versionId];
+				cell.className = "dl";
+				if (pluginVersion) {
+					var html = '<div class="pluginURL"><a href="' + pluginVersion[0] + '">Plugin</a></div>';
+					if (pluginVersion[1]) {
+						html += '<div class="pluginSource"><a href="' + pluginVersion[1] + '">Source</a></div>';
+					}
+					cell.innerHTML = html;
+				} else {
+					cell.innerHTML = "N/A";
+				}
+			}
+		}
+	}
+
+	createTbody();
+}, false);
+	</script>
 <body>
 <h1>Orion goodies</h1>
 <div class="content">
 	<h3>Plugins</h3>
-	<table class="pluginTable">
-		<tr>
-			<th>Description</th>
-			<th>Orion M6/M7</th>
-			<th>Orion 0.2</th>
-		</tr>
-		<tr>
-			<td>
-				<div class="pluginName">jsbeautify</div>
-				<div class="pluginDesc">Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.</div>
-			</td>
-			<td class="dl">
-				<a href="/m6/beautify/jsbeautify.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify">Source</a>
-			</td>
-			<td class="dl">
-				<a href="/0.2/plugins/beautify/jsbeautify.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/beautify">Source</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="pluginName">uglify</div>
-				<div class="pluginDesc">Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.</div>
-			</td>
-			<td class="dl">
-				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify">Source</a>
-			</td>
-			<td class="dl">
-				<a href="/0.2/plugins/uglify/uglify-plugin.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify">Source</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="pluginName">csslintPlugin</div>
-				<div class="pluginDesc">Provides validation on your .css files using <a href="https://github.com/stubbornella/csslint">CSS Lint</a>.</div>
-			</td>
-			<td class="dl">
-			</td>
-			<td class="dl">
-				<a href="/0.2/plugins/csslint/csslintPlugin.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint">Source</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="pluginName">reverse</div>
-				<div class="pluginDesc">A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/Documentation/Developer_Guide/Simple_plugin_example">tutorial</a>.</div>
-			</td>
-			<td class="dl">
-				<a href="/m6/uglify/uglify-plugin.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse">Source</a>
-			</td>
-			<td class="dl">
-				<a href="/0.2/plugins/reverse/reversePlugin.html">Plugin</a>
-				<a href="https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse">Source</a>
-			</td>
-		</tr>
-	</table>
+	<table id="pluginTable" class="pluginTable"></table>
 	<h3>Tools</h3>
 	<ul>
 		<li><a href="/0.2/tools/grammar">TextMate-to-Orion grammar converter</a></li>
 	</ul>
 	<h3>See also</h3>
+
 	<ul>
 		<li><a href="http://wiki.eclipse.org/Orion/">Orion wiki</a></li>
 		<li><a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">Installing a Plugin</a></li>
 	</ul>
-	<div class="contact">Maintained by: <a href="https://github.com/mamacdon">mamacdon</a></div>
 </div>
 </body>
 </html>
