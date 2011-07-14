@@ -126,6 +126,19 @@ document.addEventListener("DOMContentLoaded", function() {
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"
 				]
 			}
+		},
+		{	name: "language.js",
+			description: 'An experimental plugin that provides content assist for identifiers in JavaScript using <a href="http://languagejs.com/">language.js</a>.',
+			versions: {
+				"0.2": [
+					"/0.2/plugins/language/languagejsPlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"
+				],
+				"0.3": [
+					"/0.2/plugins/language/languagejsPlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"
+				]
+			}
 		}];
 
 	function getVersions() {
@@ -174,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					}
 					cell.innerHTML = html;
 				} else {
-					cell.innerHTML = "N/A";
+					cell.innerHTML = "&ndash;";
 				}
 			}
 		}
