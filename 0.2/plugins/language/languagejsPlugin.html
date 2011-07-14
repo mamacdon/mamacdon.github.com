@@ -18,12 +18,13 @@ function registerService(parser) {
 				    identifiers = {};
 				
 				// TODO ignore local variables in other functions
+				// TODO see if cursor is in a context where Variables can go
 				parseResult.traverse({
 					traversesTextNodes: false,
 					enteredNode: function(node) {
 						var name = node.name;
 						if (name === "IdentifierName") {
-							identifiers[node.innerText()] = null; // XXX
+							identifiers[node.innerText()] = null;
 						}
 					}
 				});
