@@ -1,3 +1,8 @@
+/*global define*/
+
+/**
+ * Poorly implements some of the Node "path" library that is required by language js.
+ */
 define(function() {
 
 var exports = {};

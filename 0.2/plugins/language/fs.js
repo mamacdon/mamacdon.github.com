@@ -1,3 +1,9 @@
+/*jslint browser:true*/
+/*global define*/
+
+/**
+ * Poorly implements some of the Node "fs" library that is required by language js.
+ */
 define(function() {
 
 var exports = {};
