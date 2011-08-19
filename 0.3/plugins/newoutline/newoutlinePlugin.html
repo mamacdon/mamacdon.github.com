@@ -1,208 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>language.js</title>
+<title>JS Outliner</title>
 <script src="plugin.js"></script>
 <script src="require.js"></script>
 <script>
 /*jslint browser:true*/
 /*global require*/
 
-function registerService(parser) {
-	var provider = new eclipse.PluginProvider();
-	
-	(function() {
-		// BEGIN OUTLINER
-		/** @returns {Object} */
-		function getOutline(node) {
-			parentify(node);
-			var outline = {name: "top"};
-			populateOutline(node, outline);
-			return outline; 
-		}
-		/** Adds a parent pointer to AST nodes */
-		function parentify(root) {
-			var q = [root];
-			while (q.length) {
-				var n = q.pop(),
-				    children = n.children,
-				    len = children && children.length;
-				for (var i = 0; i < len; i++) {
-					var child = children[i];
-					if (typeof child !== "string") {
-						child._parent = n;
-						q.push(child);
-					}
-				}
-			}
-		}
-		function populateOutline(node, parentFunc) {
-			function createFunction(/**Object*/ parentFunc, /**Function(Declaration|Expression)*/ node) {
-				var child = { name: null, parameters: null, range: node.range, children: null };
-				var params = findChild(node, "FormalParameterList");
-				child.parameters = params && params.innerText();
-				parentFunc.children = parentFunc.children || [];
-				parentFunc.children.push(child);
-				return child;
-			}
-			function findChild(node, name) {
-				var children = node.children,
-				    len = children && children.length;
-				for (var i = 0; i < len; i++) {
-					var child = children[i];
-					if (child.name === name) {
-						return child;
-					}
-				}
-				return null;
-			}
-			/**
-			 * Returns LHS of:
-			 * var x = function() {};
-			 * x = function() {};
-			 * x: function()
-			 */
-			function findLhs(/**Function(Expression|Declaration)*/ node) {
-				function findExpressionParent(node, type) {
-					for (var p = node._parent; p && p.name.indexOf("Expression") !== -1; p = p._parent) {
-						if (p.name === type) {
-							return p;
-						}
-					}
-					return null;
-				}
-				var assign = findExpressionParent(node, "AssignmentExpression"),
-				    propAssign = (assign && assign._parent.name === "PropertyAssignment") ? assign._parent : null;
-				if (propAssign) {
-					// PropertyAssignment
-					//   - PropertyName    <-- what we want
-					//   - ...
-					//   - AssignmentExpression
-					//      ...
-					//        - Function(Expression|Declaration)  <-- node
-					lhs = findChild(propAssign, "PropertyName");
-				} else if (assign) {
-					// AssignmentExpression
-					//   - LeftHandSideExpression|Identifier     <-- what we want
-					//   - ...
-					//        - Function(Expression|Declaration)   <-- node
-					lhs = findChild(assign._parent, "LeftHandSideExpression") || findChild(assign._parent, "Identifier");
-				}
-				return lhs;
-			}
-			// TODO: this is confusing because it's mutually recursive with populateOutline
-			function recurseChildren(child, parentFunc) {
-				var children = node.children,
-				    len = children && children.length;
-				for (var i = 0; i < len; i++) {
-					populateOutline(children[i], parentFunc);
-				}
-			}
-			
-			var thisFunc, idChild, lhs;
-			if (node.name === "AssignmentExpression") {
-				recurseChildren(node, parentFunc);
-			} else if (node.name === "FunctionDeclaration") {
-				thisFunc = createFunction(parentFunc, node);
-				
-				// Look for Identifier child giving our name
-				// function y() {}; Identifier is "y"
-				idChild = findChild(node, "Identifier");
-				thisFunc.name = thisFunc.name || (idChild && idChild.innerText());
-				thisFunc.name = thisFunc.name || "anonymous";
-				
-				recurseChildren(node, thisFunc);
-			} else if (node.name === "FunctionExpression") {
-				thisFunc = createFunction(parentFunc, node);
-				
-				// Look for Identifier child giving our name
-				// var x = function y() {}; Identifier is "y"
-				idChild = findChild(node, "Identifier");
-				thisFunc.name = thisFunc.name || (idChild && idChild.innerText());
-				
-				// If this FunctionExpression is the RHS of an AssignmentExpression, or the RHS of
-				// an object literal, use the LHS as our name
-				// eg. var y = function() {};
-				// eg. y: function() {}
-				lhs = findLhs(node);
-				thisFunc.name = thisFunc.name || (lhs && lhs.innerText());
-				
-				// TODO: heuristic for stuff like:
-				// addEventListener("someEvent", function() {});
-				
-				
-				thisFunc.name = thisFunc.name || "anonymous";
-				
-				recurseChildren(node, thisFunc);
-			} else {
-				recurseChildren(node, parentFunc);
-			}
-		}
-		function printOutline(outline) {
-			var q = [{node: outline, depth: 0}],
-			    s = "";
-			while (q.length) {
-				var item = q.pop(), 
-				    n = item.node,
-				    depth = item.depth;
-				if (n.name !== "top") {
-					for (var j=0; j < depth; j++) { s += "    "; }
-					s += n.name + "(" + (n.parameters || "") + ")" + "\n";
-				}
-				var len = n.children && n.children.length;
-				for (var i=len-1; i >= 0; i--) {
-					q.push({ node: n.children[i], depth: depth + 1 });
-				}
-			}
-			console.debug(s);
-		}
-		// END OF OUTLINER
-		
-		function astToString(node, indent) {
-			indent = typeof indent === "number" ? indent : 0;
-			var s = "\n",
-			    children = node.children,
-			    index = 0,
-			    count = children && children.length;
-			for (; index < count; ++index) {
-				var child = children[index];
-				if (child.name === "_") {
-					continue;
-				}
-				if (typeof child !== "string") {
-					for (var j=0; j < indent; j++) {
-						s += "  ";
-					}
-					
-					s += child.name;
-					s += astToString(child, indent+1);
-				} else {
-					//s += child;
-				}
-			}
-			return s;
-		}
-		
-		var outlineService = {
-			getKeywords: function(prefix, buffer, selection) {
-				var start = +new Date(),
-				    result = parser.parse(buffer);
-				console.debug(+new Date() - start);
-				
-				// XXX print out tree
-				//console.debug(astToString(parseResult));
-				var outline = getOutline(result);
-				printOutline(outline);
-				
-				return [];
-			}
-		};
+require(["jsoutline"], function(mJsOutline) {
+	require.ready(function() {
+		register(mJsOutline.service);
+	});
+
+	function register(service) {
+		var provider = new eclipse.PluginProvider();
 		var serviceProvider = provider.registerServiceProvider("orion.edit.contentAssist",
-			outlineService,
+			service,
 			{	name: "JavaScript structural outline",
 				pattern: "\\.js$"
 			});
-		
 		/*
 		var serviceProvider2 = provider.registerServiceProvider("orion.edit.outline",
 				outlineService,
@@ -210,19 +27,10 @@ function registerService(parser) {
 					pattern: "\\.js$"
 				});
 		*/
-	}());
-	
-	provider.connect();
-}
-
-require(["./lib/language", "fs"], function(m_language, m_fs) {
-	var jsGrammar = m_fs.readFileSync("languages/JavaScript.language");
-	var parser = new m_language.Parser(jsGrammar);
-	require.ready(function() {
-		registerService(parser);
-	});
+		provider.connect();
+	}
 });
 </script>
 </head>
-<body>New outline</body>
+<body>New outliner for JavaScript</body>
 </html>
