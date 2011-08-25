@@ -80,7 +80,7 @@ var Func = (function() {
 	return Func;
 }());
 
-function toOutline(/**Array*/ast) {
+function toFunctionTree(/**Array*/ast) {
 	// Sets the parent pointers of node's children for the next iteration of visit() to see
 	function setParents(node, parentFunc) {
 		// Find node's children using transformjs metamodel
@@ -125,24 +125,49 @@ function toOutline(/**Array*/ast) {
 	return toplevel;
 }
 
+function toOutlineModel(functionTree, isTop) {
+	isTop = typeof isTop === "undefined" ? true : false;
+	var name = functionTree.name || "function",
+	    args = functionTree.args ? functionTree.args.join(", ") : "",
+	    token = functionTree.start;
+	var element = {
+		label: name + "(" + args + ")",
+		line: token && (token.line + 1)/*,
+		column: token && token.col*/
+	};
+	if (functionTree.children && functionTree.children.length) {
+		element.children = [];
+		for (var i=0; i < functionTree.children.length; i++) {
+			element.children.push(toOutlineModel(functionTree.children[i], false));
+		}
+	}
+	if (isTop) {
+		// Chop off fake toplevel function
+		return element.children;
+	} else {
+		return element;
+	}
+}
+
 var mJsOutline = {};
 mJsOutline.service = {
-	// FIXME when we get a real outline-contribution service
-	getKeywords: function(prefix, buffer, selection) {
-		var start = +new Date();
+	getOutline: function(buffer, title) {
+		var start = +new Date(),
+		    tree,
+		    end;
 		try {
-			var ast = mParseJs.parse(buffer, false, true /*give tokens*/),
-			    outline = toOutline(ast),
-			    end = +new Date() - start;
+			var ast = mParseJs.parse(buffer, false, true /*give tokens*/);
+			tree = toFunctionTree(ast);
+			end = +new Date() - start;
 			console.dir(end);
-			console.debug(outline.debug());
+			//console.debug(tree.debug());
 		} catch (e) {
 			console.debug(e);
 		}
 		
 		//console.debug(JSON.stringify(ast));
 		//console.debug(outline);
-		return [];
+		return toOutlineModel(tree);
 	}
 };
 	return mJsOutline;

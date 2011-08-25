@@ -4,29 +4,35 @@
 <title>JS Outliner</title>
 <script src="plugin.js"></script>
 <script src="require.js"></script>
+<script src="jslintworker.js"></script>	<!-- TEMP -->
 <script>
 /*jslint browser:true*/
 /*global require*/
 
-require(["jsoutline"], function(mJsOutline) {
+require(["jsoutliner"], function(mJsOutline) {
 	require.ready(function() {
 		register(mJsOutline.service);
 	});
 
 	function register(service) {
 		var provider = new eclipse.PluginProvider();
-		var serviceProvider = provider.registerServiceProvider("orion.edit.contentAssist",
+		var serviceProvider = provider.registerServiceProvider("orion.edit.outliner",
 			service,
 			{	name: "JavaScript structural outline",
 				pattern: "\\.js$"
 			});
-		/*
-		var serviceProvider2 = provider.registerServiceProvider("orion.edit.outline",
-				outlineService,
-				{	name: "JavaScript structural outline",
-					pattern: "\\.js$"
-				});
-		*/
+		
+		// TEMP: Register jslint for validation -- so that this plugin can be used as a drop-in replacement for jslintPlugin
+		provider.registerServiceProvider("orion.edit.validator", {
+			checkSyntax: function(title, contents) {
+				JSLINT(contents, {white: false, onevar: false, undef: true, nomen: false, eqeqeq: true, plusplus: false, bitwise: false, regexp: true, newcap: true, immed: true, strict: false});
+				return JSLINT.data();
+			}
+		}, {
+			pattern: "\\.js$"
+		});
+		// END TEMP
+		
 		provider.connect();
 	}
 });
