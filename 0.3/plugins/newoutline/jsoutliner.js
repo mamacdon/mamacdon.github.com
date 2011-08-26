@@ -1,6 +1,6 @@
 /*jslint debug:true*/
 /*global console define*/
-define(["parse-js/parse-js", "transformjs"], function(mParseJs, mTransformJs) {
+define(["parse-js/parse-js.tabs", "transformjs"], function(mParseJs, mTransformJs) {
 
 var Func = (function() {
 	function Func(node, name) {
@@ -150,7 +150,7 @@ function toOutlineModel(functionTree, isTop) {
 }
 
 var mJsOutline = {};
-mJsOutline.service = {
+mJsOutline.outlineService = {
 	getOutline: function(buffer, title) {
 		var start = +new Date(),
 		    tree,
@@ -160,15 +160,29 @@ mJsOutline.service = {
 			tree = toFunctionTree(ast);
 			end = +new Date() - start;
 			console.dir(end);
-			//console.debug(tree.debug());
 		} catch (e) {
-			console.debug(e);
+			console.debug("Error parsing file: " + e);
+			return [/* TODO can we get a partial result, as with jslint? */];
 		}
-		
-		//console.debug(JSON.stringify(ast));
-		//console.debug(outline);
 		return toOutlineModel(tree);
 	}
 };
+
+mJsOutline.validationService = {
+	checkSyntax: function(title, buffer) {
+		var errors = [];
+		try {
+			mParseJs.parse(buffer, true /*strict*/, true /*give tokens*/);
+		} catch (e) {
+			errors.push({
+				reason: e.message,
+				line: e.line + 1,
+				character: e.col
+			});
+		}
+		return { errors: errors };
+	}
+};
+
 	return mJsOutline;
 });

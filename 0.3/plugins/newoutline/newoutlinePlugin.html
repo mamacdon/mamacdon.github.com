@@ -11,16 +11,22 @@
 
 require(["jsoutliner"], function(mJsOutline) {
 	require.ready(function() {
-		register(mJsOutline.service);
+		register();
 	});
 
-	function register(service) {
+	function register() {
 		var provider = new eclipse.PluginProvider();
 		var serviceProvider = provider.registerServiceProvider("orion.edit.outliner",
-			service,
+			mJsOutline.outlineService,
 			{	name: "JavaScript structural outline",
 				pattern: "\\.js$"
 			});
+		
+		// parse-js validation is not currently used since its errors are less helpful than jslint's
+//		provider.registerServiceProvider("orion.edit.validator",
+//			mJsOutline.validationService,
+//			{	pattern: "\\.js$"
+//			});
 		
 		// TEMP: Register jslint for validation -- so that this plugin can be used as a drop-in replacement for jslintPlugin
 		provider.registerServiceProvider("orion.edit.validator", {
