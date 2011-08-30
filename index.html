@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		{	name: "jsbeautify",
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
-				"0.2 M6/M7": [
+				/*"0.2 M6/M7": [
 					"/m6/beautify/jsbeautify.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
-				],
+				],*/
 				"0.2": [
 					"/0.2/plugins/beautify/jsbeautify.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
@@ -74,10 +74,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		{	name: "uglify",
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
-				"0.2 M6/M7": [
+				/*"0.2 M6/M7": [
 					"/m6/uglify/uglify-plugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"
-				],
+				],*/
 				"0.2": [
 					"/0.2/plugins/uglify/uglify-plugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
@@ -89,12 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		},
 		{	name: "csslint",
-			description: 'Provides validation on your .css files using <a href="https://github.com/stubbornella/csslint">CSS Lint</a>.',
+			description: 'Provides validation and style tips on your CSS files using <a href="https://github.com/stubbornella/csslint">CSS Lint</a>.',
 			versions: {
-				"0.2": [
+				/*"0.2": [
 					"/0.2/plugins/csslint/csslintPlugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint",
-				],
+				],*/
 				"0.3": [
 					"/0.2/plugins/csslint/csslintPlugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint",
@@ -104,10 +104,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		{	name: "reverse",
 			description: 'A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/Documentation/Developer_Guide/Simple_plugin_example">tutorial</a>.',
 			versions: {
-				"0.2 M6/M7": [
+				/*"0.2 M6/M7": [
 					"/m6/uglify/uglify-plugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse"
-				],
+				],*/
 				"0.2": [
 					"/0.2/plugins/reverse/reversePlugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"
@@ -118,8 +118,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				]
 			}
 		},
-		{	name: "bugzilla",
-			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">bugzilla integration</a> plugin for Orion.',
+		{	name: "Bugzilla",
+			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">Bugzilla integration</a> plugin for Orion.',
 			versions: {
 				"0.3": [
 					"/0.3/plugins/bugzilla/plugin.html",
@@ -128,7 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		},
 		{	name: "language.js",
-			description: 'An experimental plugin that provides content assist for identifiers in JavaScript using <a href="http://languagejs.com/">language.js</a>.',
+			description: 'Provides content assist suggestions JavaScript identifiers using <a href="http://languagejs.com/">language.js</a>.',
+			experimental: true,
 			versions: {
 				"0.2": [
 					"/0.2/plugins/language/languagejsPlugin.html",
@@ -139,7 +140,18 @@ document.addEventListener("DOMContentLoaded", function() {
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"
 				]
 			}
-		}];
+		},
+		{	name: "JavaScript hierarchical outline",
+			description: 'Provides a tree view of the functions in a JavaScript file.',
+			experimental: true,
+			versions: {
+				"0.3 M2": [
+					"/0.3/plugins/newoutline/newoutlinePlugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/newoutline/"
+				]
+			}
+		}
+		];
 
 	function getVersions() {
 		var versions = {};
@@ -158,11 +170,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		return array;
 	}
 
-	function createTbody() {
-		var table = document.getElementById("pluginTable");
-		var versions = getVersions();
-		var headerRow = table.insertRow(-1);
-		var th = document.createElement("th");
+	function createTbody(tableId) {
+		var table = document.getElementById(tableId),
+		    versions = getVersions(),
+		    headerRow = table.insertRow(-1),
+		    th = document.createElement("th");
 		th.innerHTML = "Description";
 		headerRow.appendChild(th);
 		for (var i=0; i < versions.length; i++) {
@@ -176,9 +188,9 @@ document.addEventListener("DOMContentLoaded", function() {
 			var desc = row.insertCell(-1);
 			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' + '<div class="pluginDesc">' + plugin.description + '</div>';
 			for (var j=0; j < versions.length; j++) {
-				var cell = row.insertCell(-1);
-				var versionId = versions[j];
-				var pluginVersion = plugin.versions[versionId];
+				var cell = row.insertCell(-1),
+				    versionId = versions[j],
+				    pluginVersion = plugin.versions[versionId];
 				cell.className = "dl";
 				if (pluginVersion) {
 					var html = '<div class="pluginURL"><a href="' + pluginVersion[0] + '">Plugin</a></div>';
@@ -188,12 +200,13 @@ document.addEventListener("DOMContentLoaded", function() {
 					cell.innerHTML = html;
 				} else {
 					cell.innerHTML = "&ndash;";
+					cell.title = "Not available for Orion " + versionId;
 				}
 			}
 		}
 	}
 
-	createTbody();
+	createTbody("pluginTable");
 }, false);
 	</script>
 <body>
