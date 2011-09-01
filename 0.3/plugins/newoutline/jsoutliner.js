@@ -1,6 +1,6 @@
 /*jslint debug:true*/
 /*global console define*/
-define(["parse-js/parse-js.tabs", "transformjs"], function(mParseJs, mTransformJs) {
+define(["parse-js/parse-js", "transformjs"], function(mParseJs, mTransformJs) {
 
 var Func = (function() {
 	function Func(node, name) {
