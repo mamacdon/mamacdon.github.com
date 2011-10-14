@@ -41,16 +41,25 @@
 						return {problems: problems};
 					}
 			};
-			var provider = new eclipse.PluginProvider();
-			var serviceProvider = provider.registerServiceProvider("orion.edit.validator", csslintService, {
-				pattern: "\\.css$"
-			});
-			provider.connect();
-			
-			//functions:cssResult.stats
+			try {
+				var provider = new eclipse.PluginProvider();
+				var serviceProvider = provider.registerServiceProvider("orion.edit.validator", csslintService, {
+					pattern: "\\.css$"
+				});
+				provider.connect();
+			} finally {
+				if (document && document.getElementById) {
+					document.getElementById("url").appendChild(document.createTextNode(window.location));
+				}
+			}
 		};
-	</script> 
-</head> 
-<body>CSSLint plugin for Orion 0.3
+	</script>
+	<title>CSSLint Plugin</title>
+</head>
+<body><h1>CSSLint plugin for Orion</h1>
+<p>This is a plugin for <a href="http://wiki.eclipse.org/Orion/">Orion</a>. It is not meant to be viewed in a browser.</p>
+<p>To install this plugin, follow <a href="http://wiki.eclipse.org/Orion/How_Tos/Installing_A_Plugin">these instructions</a> using this URL:</p>
+<p id="url" style="font-family: monospace; font-size: large; padding-left:2em;"></p>
+<p><em>Requires Orion 0.3</em></p>
 </body> 
 </html>
