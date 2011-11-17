@@ -2,8 +2,9 @@
 <html> 
 <head> 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-	<script type="text/javascript" src="http://orion.eclipse.org/orion/plugin.js"></script> 
-	<script type="text/javascript" src="http://csslint.net/js/csslint.js"></script> 
+	<script src="http://orionhub.org/orion/plugin.js"></script> 
+	<script src="http://csslint.net/js/csslint.js"></script> 
+	<script src="lib/css-outline.js"></script>
 	<script> 
 /*******************************************************************************
  * Copyright (c) 2010, 2011 IBM Corporation and others.
@@ -46,6 +47,18 @@
 				var serviceProvider = provider.registerServiceProvider("orion.edit.validator", csslintService, {
 					pattern: "\\.css$"
 				});
+				provider.registerServiceProvider("orion.edit.outliner",
+					{
+						// TODO outlines should be pushed, not pulled, so we can avoid parsing twice
+						getOutline: function(contents, title) {
+							CSSLint.verify(contents);
+							return window.cssOutline;
+						}
+					}, {
+						pattern: "\\.css$",
+						id: "orion.outline.css.csslint",
+						name: "CSS rule outline"
+					});
 				provider.connect();
 			} finally {
 				if (document && document.getElementById) {
