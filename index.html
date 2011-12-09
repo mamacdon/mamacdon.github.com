@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		return array;
 	}
 
-	function createTbody(tableId) {
+	function createTbody(tableId, plugins) {
 		var table = document.getElementById(tableId),
 		    versions = getVersions(),
 		    headerRow = table.insertRow(-1),
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			th.innerHTML = "Orion " + versions[i];
 			headerRow.appendChild(th);
 		}
-		var plugins = plugins.sort(function(p1, p2) {
+		plugins = plugins.sort(function(p1, p2) {
 			var n1 = p1.name.toLowerCase(), n2 = p2.name.toLowerCase();
 			if (n1 < n2) { return -1; }
 			else if (n2 > n1) { return 1; }
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 	}
 
-	createTbody("pluginTable");
+	createTbody("pluginTable", plugins);
 }, false);
 	</script>
 <body>
