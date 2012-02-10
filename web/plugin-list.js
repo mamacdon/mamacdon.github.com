@@ -1,4 +1,4 @@
-var plugins = [
+var pluginsData = [
 	{	name: "JS Beautify",
 		description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 		versions: {
@@ -93,6 +93,10 @@ var plugins = [
 			"0.3": [
 				"http://mamacdon.github.com/outliner/outlinerPlugin.html",
 				"https://github.com/mamacdon/outliner"
+			],
+			"0.4": [
+				"http://mamacdon.github.com/outliner/outlinerPlugin.html",
+				"https://github.com/mamacdon/outliner"
 			]
 		}
 	},
@@ -101,6 +105,10 @@ var plugins = [
 		experimental: true,
 		versions: {
 			"0.3": [
+				"http://johnjbarton.github.com/outliner/nonymousPlugin.html",
+				"https://github.com/johnjbarton/outliner"
+			],
+			"0.4": [
 				"http://johnjbarton.github.com/outliner/nonymousPlugin.html",
 				"https://github.com/johnjbarton/outliner"
 			]
@@ -135,8 +143,21 @@ var plugins = [
 		}
 	}];
 
+var TARGET = "target", VERSION = "version";
+
+// TODO listen to hashChange
 document.addEventListener("DOMContentLoaded", function() {
-	function getVersions() {
+	function getPlugins(params) {
+		var version = params[VERSION], plugins = [];
+		for (var i=0; i < pluginsData.length; i++) {
+			var plugin = pluginsData[i];
+			if (!version || plugin.versions[version]) {
+				plugins.push(plugin);
+			}
+		}
+		return plugins;
+	}
+	function getVersions(plugins) {
 		var versions = {};
 		for (var i=0; i < plugins.length; i++) {
 			var plugin = plugins[i];
@@ -152,45 +173,96 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		return array;
 	}
-
-	function createTbody(tableId, plugins) {
-		var table = document.getElementById(tableId),
-		    versions = getVersions(),
-		    headerRow = table.insertRow(-1),
-		    th = document.createElement("th");
-		th.innerHTML = "";
-		headerRow.appendChild(th);
-		for (var i=0; i < versions.length; i++) {
-			th = document.createElement("th");
-			th.innerHTML = "Orion " + versions[i];
-			headerRow.appendChild(th);
+	
+	function parseParameters() {
+		// TODO URITemplates?
+		var params = {};
+		var hash = window.location.hash && window.location.hash.substr(1);
+		if (hash) {
+			var array = hash.split(/\?|,|&|(=)/);
+			for (var i=0; i < array.length; i++) {
+				var key = array[i];
+				if (key && array[i + 1] === "=") {
+					params[key] = array[i + 2];
+					i++;
+				}
+			}
 		}
+		return params;
+	}
+
+	function createTbody(tableId, plugins, params) {
+		function createHeaderRow(table) {
+			var headerRow = table.insertRow(-1);
+			var th = document.createElement("th");
+			th.innerHTML = "";
+			headerRow.appendChild(th);
+			if (params[VERSION]) {
+				th = document.createElement("th");
+				th.innerHTML = "";
+				headerRow.appendChild(th);
+			} else {
+				for (var i=0; i < versions.length; i++) {
+					th = document.createElement("th");
+					th.innerHTML = "Orion " + versions[i];
+					headerRow.appendChild(th);
+				}
+			}
+		}
+		function getInstallURL(target, plugin, version) {
+			var url = plugin.versions[version][0];
+			return target + "#plugins?installPlugin=" + url;
+		}
+		function generatePluginCell(cell, plugin, versionId) {
+			var html = ""; 
+			var pluginVersion = plugin.versions[versionId];
+			if (params[TARGET] && pluginVersion) {
+				var url = getInstallURL(params[TARGET], plugin, versionId);
+				html = '<a href="' + url + '" title="Install into Orion">Install</a>';
+			} else {
+				if (pluginVersion) {
+					var installURL = pluginVersion[0], sourceURL = pluginVersion[1];
+					html = '<div class="pluginURL"><a href="' + installURL + '">Plugin</a></div>';
+					if (sourceURL) {
+						html += '<div class="pluginSource"><a href="' + sourceURL + '">Source</a></div>';
+					}
+				} else {
+					html = "&ndash;";
+					cell.title = "Not available for Orion " + versionId;
+				}
+			}
+			cell.innerHTML = html;
+		}
+		
+		var table = document.getElementById(tableId);
+		var versions = getVersions(plugins);
+		createHeaderRow(table);
 		plugins.sort(function(p1, p2) {
 			return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
 		});
-		for (i=0; i < plugins.length; i++) {
+		for (var i=0; i < plugins.length; i++) {
 			var plugin = plugins[i];
 			var row = table.insertRow(-1);
 			var desc = row.insertCell(-1);
-			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' + '<div class="pluginDesc">' + plugin.description + '</div>';
-			for (var j=0; j < versions.length; j++) {
-				var cell = row.insertCell(-1),
-				    versionId = versions[j],
-				    pluginVersion = plugin.versions[versionId];
+			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' 
+				+ '<div class="pluginDesc">' + plugin.description + '</div>';
+			var cell, versionId;
+			if (params[VERSION]) {
+				cell = row.insertCell(-1);
 				cell.className = "dl";
-				if (pluginVersion) {
-					var html = '<div class="pluginURL"><a href="' + pluginVersion[0] + '">Plugin</a></div>';
-					if (pluginVersion[1]) {
-						html += '<div class="pluginSource"><a href="' + pluginVersion[1] + '">Source</a></div>';
-					}
-					cell.innerHTML = html;
-				} else {
-					cell.innerHTML = "&ndash;";
-					cell.title = "Not available for Orion " + versionId;
+				var versionId = params[VERSION];
+				generatePluginCell(cell, plugin, versionId);
+			} else {
+				for (var j=0; j < versions.length; j++) {
+					cell = row.insertCell(-1);
+					cell.className = "dl";
+					versionId = versions[j];
+					generatePluginCell(cell, plugin, versionId);
 				}
 			}
 		}
 	}
 
-	createTbody("pluginTable", plugins);
+	var params = parseParameters();
+	createTbody("pluginTable", getPlugins(params), params);
 }, false);
