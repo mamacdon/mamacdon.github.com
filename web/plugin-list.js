@@ -100,7 +100,7 @@ var plugins = [
 		description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 		experimental: true,
 		versions: {
-			"0.3 M2": [
+			"0.3": [
 				"http://johnjbarton.github.com/outliner/nonymousPlugin.html",
 				"https://github.com/johnjbarton/outliner"
 			]
