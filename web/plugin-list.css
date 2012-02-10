@@ -1,0 +1,83 @@
+.body {
+	font: 12pt Verdana,Arial,Helvetica,Myriad,Tahoma,clean,sans-serif;
+}
+
+.staticBanner {
+	border: 1px solid #E6E6E6;
+	border-bottom: 1px solid #EBEBEB;
+	border-top: 1px solid #EBEBEB;
+	margin-top: 15px;
+	margin-left: 0;
+	padding: 5px;
+	background: #2E2E2E;
+	color: white;
+}
+
+.pageHeading {
+	display: inline;
+	font-size: 18pt;
+}
+
+.sectionHeading {
+	border: 1px solid #E6E6E6;
+	border-bottom: 1px solid #EBEBEB;
+	border-top: 1px solid #EBEBEB;
+	margin-top: 15px;
+	margin-left: 0;
+	padding: 5px;
+	background: #F8F8F8;
+	
+	vertical-align: middle;
+	font-size: 14pt;
+	font-weight: bold;
+	color: gray;
+}
+
+.sectionContent {
+	margin-left: 15px;
+}
+
+.pluginTable {
+	border-spacing: 0;
+	width: 900px;
+}
+
+.pluginTable, .pluginTable tr, .pluginTable td, .pluginTable th {
+	border-bottom: 1px solid #E6E6E6;
+	border-right: 1px solid #E6E6E6;
+}
+
+.pluginTable td, .pluginTable th {
+	padding: 5px;
+}
+
+.pluginTable th {
+	white-space: nowrap;
+}
+
+.pluginName {
+	font-weight: bold;
+}
+
+.pluginURL {
+	margin-bottom: 0.5em;
+	white-space: nowrap;
+}
+
+.pluginSource {
+	font-size: small;
+}
+
+.dl {
+	text-align: center;
+}
+
+.dl a:nth-child(1) {
+	padding-right: 0.5em;
+}
+
+.contact {
+	font-style: italic;
+	font-size: small;
+	padding-top: 1em;
+}
