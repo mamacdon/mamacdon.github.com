@@ -214,8 +214,13 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 		function getInstallURL(target, plugin, version) {
+			function qualify(url) {
+				var a = document.createElement('a');
+				a.href = url;
+				return a.href;
+			}
 			var url = plugin.versions[version][0];
-			return target + "#plugins?installPlugin=" + url;
+			return target + "#plugins?installPlugin=" + qualify(url);
 		}
 		function generatePluginCell(cell, plugin, versionId) {
 			var html = ""; 
