@@ -69,6 +69,10 @@ var pluginsData = [
 			"0.3": [
 				"/0.3/plugins/bugzilla/plugin.html",
 				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"
+			],
+			"0.4": [
+				"/0.3/plugins/bugzilla/plugin.html",
+				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"
 			]
 		}
 	},
