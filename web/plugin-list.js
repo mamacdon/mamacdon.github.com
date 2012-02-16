@@ -1,3 +1,5 @@
+/*jslint browser: true*/
+/*global window*/
 var pluginsData = [
 	{	name: "JS Beautify",
 		description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
@@ -38,11 +40,11 @@ var pluginsData = [
 		versions: {
 			"0.2": [
 				"/0.2/plugins/csslint/csslintPlugin.html",
-				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint",
+				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/csslint"
 			],
 			"0.3": [
 				"/0.3/plugins/csslint/csslintPlugin.html",
-				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/csslint",
+				"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/csslint"
 			]
 		}
 	},
@@ -162,20 +164,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		return plugins;
 	}
 	function getVersions(plugins) {
+		function keys(obj) {
+			var a = [];
+			for (var p in obj) { if (Object.hasOwnProperty.call(obj, p)) { a.push(p); } }
+			return a;
+		}
 		var versions = {};
 		for (var i=0; i < plugins.length; i++) {
-			var plugin = plugins[i];
-			for (var prop in plugin.versions) {
-				if (plugin.versions.hasOwnProperty(prop)) {
-					versions[prop] = null;
-				}
+			var pluginVersions = keys(plugins[i].versions);
+			for (var j=0; j < pluginVersions.length; j++) {
+				versions[pluginVersions[j]] = null;
 			}
 		}
-		var array = [];
-		for (prop in versions) {
-			array.push(prop);
-		}
-		return array;
+		return keys(versions);
 	}
 	
 	function parseParameters() {
@@ -196,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	function createTbody(tableId, plugins, params) {
-		function createHeaderRow(table) {
+		function createHeaderRow(table, versions) {
 			var headerRow = table.insertRow(-1);
 			var th = document.createElement("th");
 			th.innerHTML = "";
@@ -245,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 		var table = document.getElementById(tableId);
 		var versions = getVersions(plugins);
-		createHeaderRow(table);
+		createHeaderRow(table, versions);
 		plugins.sort(function(p1, p2) {
 			return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
 		});
@@ -253,13 +254,13 @@ document.addEventListener("DOMContentLoaded", function() {
 			var plugin = plugins[i];
 			var row = table.insertRow(-1);
 			var desc = row.insertCell(-1);
-			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' 
-				+ '<div class="pluginDesc">' + plugin.description + '</div>';
+			desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' + 
+					'<div class="pluginDesc">' + plugin.description + '</div>';
 			var cell, versionId;
 			if (params[VERSION]) {
 				cell = row.insertCell(-1);
 				cell.className = "dl";
-				var versionId = params[VERSION];
+				versionId = params[VERSION];
 				generatePluginCell(cell, plugin, versionId);
 			} else {
 				for (var j=0; j < versions.length; j++) {
