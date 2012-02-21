@@ -2,7 +2,7 @@
 /*global define window*/
 
 // TODO listen to hashChange and rebuild table
-define(['domReady!'], function(document) {
+define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 	var pluginsData = [
 		{	name: "JS Beautify",
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
@@ -221,7 +221,12 @@ define(['domReady!'], function(document) {
 					return a.href;
 				}
 				var url = plugin.versions[version][0];
-				return target + "#plugins?installPlugin=" + qualify(url);
+				return new URITemplate(target + "#{resource,params*}").expand({
+					resource: "plugins",
+					params: {
+						installPlugin: qualify(url)
+					}
+				});
 			}
 			function generatePluginCell(cell, plugin, versionId) {
 				var html = ""; 
