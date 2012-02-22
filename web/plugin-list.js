@@ -150,7 +150,18 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					"https://github.com/aclement/esprima-outline"
 				]
 			}
-		}];
+		},
+		{
+			name: "Esprima content assist",
+			description: "Offers completion and type inference for JavaScript files.",
+			versions: {
+				"0.4": [
+						"http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html",
+						"https://github.com/aeisenberg/esprimaContentAssist"
+				]
+			}
+		}
+		];
 
 	var TARGET = "target", VERSION = "version";
 
