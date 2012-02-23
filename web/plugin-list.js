@@ -18,6 +18,10 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				"0.3": [
 					"/0.2/plugins/beautify/jsbeautify.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
+				],
+				"0.4": [
+					"/0.2/plugins/beautify/jsbeautify.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"
 				]
 			}
 		},
@@ -33,6 +37,10 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
 				],
 				"0.3": [
+					"/0.2/plugins/uglify/uglify-plugin.html",
+					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
+				],
+				"0.4": [
 					"/0.2/plugins/uglify/uglify-plugin.html",
 					"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"
 				]
