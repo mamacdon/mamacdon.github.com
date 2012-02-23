@@ -232,9 +232,10 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					return a.href;
 				}
 				var url = plugin.versions[version][0];
-				return new URITemplate(target + "#{resource,params*}").expand({
-					resource: "plugins",
+				return new URITemplate(target + "#{,resource,params*}").expand({
+					resource: "",
 					params: {
+						category: "plugins",
 						installPlugin: qualify(url)
 					}
 				});
