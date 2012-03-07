@@ -1,7 +1,6 @@
 /*jslint browser: true*/
 /*global define window*/
 
-// TODO listen to hashChange and rebuild table
 define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 	var pluginsData = [
 		{	name: "JS Beautify",
@@ -112,7 +111,6 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 
 	var TARGET = "target", VERSION = "version";
 
-	// Initialization starts here
 	(function() {
 		function getPlugins(params) {
 			var version = params[VERSION], plugins = [];
@@ -154,7 +152,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 			return params;
 		}
-		function createTbody(tableId, plugins, params) {
+		function createTbody(table, plugins, params) {
 			function createHeaderRow(table, versions) {
 				var headerRow = table.insertRow(-1);
 				var th = document.createElement("th");
@@ -208,7 +206,6 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				cell.innerHTML = html;
 			}
 			
-			var table = document.getElementById(tableId);
 			var versions = getVersions(plugins);
 			createHeaderRow(table, versions);
 			plugins.sort(function(p1, p2) {
@@ -236,8 +233,17 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				}
 			}
 		}
-	
-		var params = parseParameters();
-		createTbody("pluginTable", getPlugins(params), params);
+		function createTable() {
+			var table = document.getElementById("pluginTable");
+			while (table.firstChild) {
+				table.removeChild(table.firstChild);
+			}
+			var params = parseParameters();
+			createTbody(table, getPlugins(params), params);
+		}
+		// Initialization starts here
+		window.addEventListener("hashchange", createTable, false);
+
+		createTable();
 	}());
 });
