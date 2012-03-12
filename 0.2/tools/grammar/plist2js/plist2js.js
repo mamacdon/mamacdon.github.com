@@ -1,9 +1,18 @@
-/*jslint*/
+/*jslint regexp:false*/
 /*global define Node*/
 
 // http://www.apple.com/DTDs/PropertyList-1.0.dtd
 define([], function() {
 	var exports = {};
+
+	var reserved = (function() {
+		var words = ('break case catch continue debugger default delete do else finally for function if in instanceof new return switch this throw try typeof var void while with class enum export extends import super implements interface let package private protected public static yield').split(' ');
+		var temp = {};
+		for (var i=0; i < words.length; i++) {
+			temp[words[i]] = true;
+		}
+		return temp;
+	}());
 	
 	/** @returns {String} str enclosed in double-quotes and nicely escaped for JS */
 	function toLiteral(/**String*/ str) {
@@ -24,6 +33,12 @@ define([], function() {
 	
 	/** @returns {String} */
 	function toSource(/**Object*/ obj) {
+		function _key(keyName) {
+			if (!keyName.charAt(0).match(/[\w_$]/) || keyName.match(/[^\w\d_$]/) || reserved[keyName]) {
+				return "'" + keyName + "'";
+			}
+			return keyName;
+		}
 		if (obj instanceof Array) {
 			var elems = [];
 			for (var i=0; i < obj.length; i++) {
@@ -39,7 +54,7 @@ define([], function() {
 				var props = [];
 				for (var prop in obj) {
 					if (obj.hasOwnProperty(prop)) {
-						props.push(prop + ": " + toSource(obj[prop]));
+						props.push(_key(prop) + ": " + toSource(obj[prop]));
 					}
 				}
 				return "{ " + props.join(", ") + " }";
