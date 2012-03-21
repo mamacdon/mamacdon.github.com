@@ -104,6 +104,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 			Plugin.prototype = {
 				getDescription: function() { return this.description; },
+				getInstallURL: function(version) {
+					var ver = this.getVersion(version);
+					return (ver && ver[0]) || null;
+				},
+				getSourceURL: function(version) {
+					var ver = this.getVersion(version);
+					return (ver && ver[1]) || null;
+				},
 				getName: function() { return this.name; },
 				getVersion: function(versionId) {
 					var keys = Object.keys(this.versions);
@@ -131,11 +139,11 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				pluginsData[i] = new Plugin(pluginsData[i]);
 			}
 		}());
-		function getPlugins(versionId) {
+		function getPluginsMatching(predicate) {
 			var plugins = [];
 			for (var i=0; i < pluginsData.length; i++) {
 				var plugin = pluginsData[i];
-				if (!versionId || plugin.getVersion(versionId)) {
+				if (predicate(plugin)) {
 					plugins.push(plugin);
 				}
 			}
@@ -184,13 +192,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					}
 				}
 			}
-			function getInstallURL(target, plugin, version) {
+			function getQualifiedInstallURL(target, /**Plugin*/ plugin, versionId) {
 				function qualify(url) {
 					var a = document.createElement('a');
 					a.href = url;
 					return a.href;
 				}
-				var url = plugin.getVersion(version)[0];
+				var url = plugin.getInstallURL(versionId);
 				return new URITemplate(target + "#{,resource,params*}").expand({
 					resource: "",
 					params: {
@@ -203,12 +211,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				var html = ""; 
 				var pluginVersion = plugin.getVersion(versionId);
 				if (params[TARGET] && pluginVersion) {
-					var url = getInstallURL(params[TARGET], plugin, versionId);
+					var url = getQualifiedInstallURL(params[TARGET], plugin, versionId);
 					html = '<a href="' + url + '" title="Install into Orion">Install</a>';
 				} else {
 					if (pluginVersion) {
-						var installURL = pluginVersion[0], sourceURL = pluginVersion[1];
-						html = '<div class="pluginURL"><a href="' + installURL + '">Plugin</a></div>';
+						var installURL = plugin.getInstallURL(versionId), sourceURL = plugin.getSourceURL(versionId);
+						if (installURL) {
+							html = '<div class="pluginURL"><a href="' + installURL + '">Plugin</a></div>';
+						}
 						if (sourceURL) {
 							html += '<div class="pluginSource"><a href="' + sourceURL + '">Source</a></div>';
 						}
@@ -253,7 +263,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				table.removeChild(table.firstChild);
 			}
 			var params = parseParameters();
-			createTbody(table, getPlugins(params[VERSION]), params);
+			createTbody(table, getPluginsMatching(function(plugin) {
+					// If VERSION is provided, only show plugins with that version defined.
+					// If TARGET is provided, only show plugins with an install URL for the version.
+					var versionId = params[VERSION], target = params[TARGET];
+					var versionMatch = !versionId || plugin.getVersion(versionId);
+					var installMatch = !versionId || !target || plugin.getInstallURL(versionId);
+					return versionMatch && installMatch;
+				}), params);
 		}
 		// Initialization starts here
 		window.addEventListener("hashchange", createTable, false);
