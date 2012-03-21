@@ -88,6 +88,12 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			versions: {
 				"0.4|0.5": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"]
 			}
+		},
+		{	name: "Amazon S3 filesystem",
+			description: "Provides access to an Amazon S3 bucket as a filesystem. See <a href='https://github.com/mamacdon/orion-s3/blob/master/README.md'>README</a> for installation instructions.",
+			versions: {
+				"0.4|0.5": [null, "https://github.com/mamacdon/orion-s3/"]
+			}
 		}
 		];
 
