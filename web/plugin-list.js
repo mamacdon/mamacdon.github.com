@@ -6,20 +6,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "JS Beautify",
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
-				"0.2": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"],
-				"0.3": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"],
-				"0.4": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"],
-				"0.5": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"]
+				"0.2|0.3|0.4|0.5": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"]
 			}
 		},
 		{	name: "Uglify",
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
 				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"],*/
-				"0.2": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"],
-				"0.3": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"],
-				"0.4": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"],
-				"0.5": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"]
+				"0.2|0.3|0.4|0.5": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"]
 			}
 		},
 		{	name: "CSSLint",
@@ -32,17 +26,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "reverse",
 			description: 'A minimal plugin example used as part of a <a href="http://wiki.eclipse.org/Orion/Documentation/Developer_Guide/Simple_plugin_example">tutorial</a>.',
 			versions: {
-				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/reverse"],*/
-				"0.2": ["/0.2/plugins/reverse/reversePlugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"],
-				"0.3": ["/0.2/plugins/reverse/reversePlugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"]
+				"0.2|0.3": ["/0.2/plugins/reverse/reversePlugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/reverse"]
 			}
 		},
 		{	name: "Bugzilla",
 			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">Bugzilla integration</a> plugin for Orion.',
 			versions: {
-				"0.3": ["/0.3/plugins/bugzilla/plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"],
-				"0.4": ["/0.3/plugins/bugzilla/plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"],
-				"0.5": ["/0.3/plugins/bugzilla/plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"]
+				"0.3|0.4|0.5": ["/0.3/plugins/bugzilla/plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"]
 			}
 		},
 		//{	name: "language.js",
@@ -63,48 +53,40 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Provides a simple tree view of the functions in a JavaScript file.',
 			experimental: true,
 			versions: {
-				"0.3": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"],
-				"0.4": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"],
-				"0.5": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
+				"0.3|0.4|0.5": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
 			}
 		},
 		{	name: "Nonymous outline",
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				"0.3": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"],
-				"0.4": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"],
-				"0.5": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
+				"0.3|0.4|0.5": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
 			}
 		},
 		{	name: "CodeMirror highlighting",
 			description: 'Uses <a href="http://codemirror.net/">CodeMirror</a> modes to highlight your code.',
 			experimental: true,
 			versions: {
-				"0.4": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"],
-				"0.5": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				"0.4|0.5": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
 			}
 		},
 		{	name: "HTML Outline",
 			description: 'Provides a hierarchical outline of the elements in an HTML file.',
 			versions: {
-				"0.4": ["http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html", "https://github.com/jarthorn/html-tools"],
-				"0.5": ["http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html", "https://github.com/jarthorn/html-tools"]
+				"0.4|0.5": ["http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html", "https://github.com/jarthorn/html-tools"]
 			}
 		},
 		{	name: "Esprima outline",
 			description: 'Uses the <a href="http://esprima.org">esprima</a> JavaScript parser to provide a detailed outline of your JavaScript code.',
 			versions: {
-				"0.4": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"],
-				"0.5": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
+				"0.4|0.5": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
 			}
 		},
 		{
 			name: "Esprima content assist",
 			description: "Offers completion and type inference for JavaScript files.",
 			versions: {
-				"0.4": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"],
-				"0.5": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"]
+				"0.4|0.5": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"]
 			}
 		}
 		];
@@ -112,30 +94,62 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 	var TARGET = "target", VERSION = "version";
 
 	(function() {
-		function getPlugins(params) {
-			var version = params[VERSION], plugins = [];
+		// Turn 'pluginsData' JSON structure into objects with behavior.
+		(function unmarshallPlugins() {
+			function Plugin(source) {
+				var keys = Object.keys(source);
+				for (var i=0; i < keys.length; i++) {
+					this[keys[i]] = source[keys[i]];
+				}
+			}
+			Plugin.prototype = {
+				getDescription: function() { return this.description; },
+				getName: function() { return this.name; },
+				getVersion: function(versionId) {
+					var keys = Object.keys(this.versions);
+					for (var i=0; i < keys.length; i++) {
+						var ver = keys[i];
+						if (ver.split("|").indexOf(versionId) !== -1) {
+							return this.versions[ver];
+						}
+					}
+					return null;
+				},
+				getVersionIds: function() {
+					var versions = Object.keys(this.versions);
+					var keys = [];
+					for (var i=0; i < versions.length; i++) {
+						var vs = versions[i].split("|");
+						for (var j=0; j < vs.length; j++) {
+							keys.push(vs[j]);
+						}
+					}
+					return keys;
+				}
+			};
+			for (var i = 0; i < pluginsData.length; i++) {
+				pluginsData[i] = new Plugin(pluginsData[i]);
+			}
+		}());
+		function getPlugins(versionId) {
+			var plugins = [];
 			for (var i=0; i < pluginsData.length; i++) {
 				var plugin = pluginsData[i];
-				if (!version || plugin.versions[version]) {
+				if (!versionId || plugin.getVersion(versionId)) {
 					plugins.push(plugin);
 				}
 			}
 			return plugins;
 		}
-		function getVersions(plugins) {
-			function keys(obj) {
-				var a = [];
-				for (var p in obj) { if (Object.hasOwnProperty.call(obj, p)) { a.push(p); } }
-				return a;
-			}
+		function getAllVersions(/**Plugin[]*/ plugins) {
 			var versions = {};
 			for (var i=0; i < plugins.length; i++) {
-				var pluginVersions = keys(plugins[i].versions);
-				for (var j=0; j < pluginVersions.length; j++) {
-					versions[pluginVersions[j]] = null;
+				var versionIds = plugins[i].getVersionIds();
+				for (var j=0; j < versionIds.length; j++) {
+					versions[versionIds[j]] = null;
 				}
 			}
-			return keys(versions);
+			return Object.keys(versions);
 		}
 		function parseParameters() {
 			var params = {};
@@ -176,7 +190,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					a.href = url;
 					return a.href;
 				}
-				var url = plugin.versions[version][0];
+				var url = plugin.getVersion(version)[0];
 				return new URITemplate(target + "#{,resource,params*}").expand({
 					resource: "",
 					params: {
@@ -187,7 +201,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 			function generatePluginCell(cell, plugin, versionId) {
 				var html = ""; 
-				var pluginVersion = plugin.versions[versionId];
+				var pluginVersion = plugin.getVersion(versionId);
 				if (params[TARGET] && pluginVersion) {
 					var url = getInstallURL(params[TARGET], plugin, versionId);
 					html = '<a href="' + url + '" title="Install into Orion">Install</a>';
@@ -206,17 +220,17 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				cell.innerHTML = html;
 			}
 			
-			var versions = getVersions(plugins);
+			var versions = getAllVersions(plugins);
 			createHeaderRow(table, versions);
 			plugins.sort(function(p1, p2) {
-				return p1.name.toLowerCase().localeCompare(p2.name.toLowerCase());
+				return p1.getName().toLowerCase().localeCompare(p2.getName().toLowerCase());
 			});
 			for (var i=0; i < plugins.length; i++) {
 				var plugin = plugins[i];
 				var row = table.insertRow(-1);
 				var desc = row.insertCell(-1);
-				desc.innerHTML = '<div class="pluginName">' + plugin.name + '</div>' + 
-						'<div class="pluginDesc">' + plugin.description + '</div>';
+				desc.innerHTML = '<div class="pluginName">' + plugin.getName() + '</div>' + 
+						'<div class="pluginDesc">' + plugin.getDescription() + '</div>';
 				var cell, versionId;
 				if (params[VERSION]) {
 					cell = row.insertCell(-1);
@@ -239,7 +253,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				table.removeChild(table.firstChild);
 			}
 			var params = parseParameters();
-			createTbody(table, getPlugins(params), params);
+			createTbody(table, getPlugins(params[VERSION]), params);
 		}
 		// Initialization starts here
 		window.addEventListener("hashchange", createTable, false);
