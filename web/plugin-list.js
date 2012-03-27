@@ -39,14 +39,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		//	description: 'Provides content assist suggestions JavaScript identifiers using <a href="http://languagejs.com/">language.js</a>.',
 		//	experimental: true,
 		//	versions: {
-		//		"0.2": [
-		//			"/0.2/plugins/language/languagejsPlugin.html",
-		//			"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"
-		//		],
-		//		"0.3": [
-		//			"/0.2/plugins/language/languagejsPlugin.html",
-		//			"https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"
-		//		]
+		//		"0.2|0.3": ["/0.2/plugins/language/languagejsPlugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"],
 		//	}
 		//},
 		{	name: "JavaScript hierarchical outline",
