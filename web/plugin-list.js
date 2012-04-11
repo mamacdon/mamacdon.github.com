@@ -6,14 +6,16 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "JS Beautify",
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
-				"0.2|0.3|0.4|0.5": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/beautify"]
+				"0.2|0.3|0.4": ["/0.2/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/beautify"],
+				"0.5": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"]
 			}
 		},
 		{	name: "Uglify",
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
 				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"],*/
-				"0.2|0.3|0.4|0.5": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"]
+				"0.2|0.3|0.4": ["/0.2/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/uglify"],
+				"0.5": ["/0.5/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify"]
 			}
 		},
 		{	name: "CSSLint",
