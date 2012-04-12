@@ -58,11 +58,12 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				"0.3|0.4|0.5": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
 			}
 		},
-		{	name: "CodeMirror highlighting",
+		{	name: "CodeMirror",
 			description: 'Uses <a href="http://codemirror.net/">CodeMirror</a> modes to highlight your code.',
 			experimental: true,
 			versions: {
-				"0.4|0.5": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				"0.4": ["/0.4/plugins/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror/tree/v0.1.8"],
+				"0.5": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
 			}
 		},
 		{	name: "HTML Outline",
