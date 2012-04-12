@@ -90,10 +90,17 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			versions: {
 				"0.4|0.5": [null, "https://github.com/mamacdon/orion-s3/"]
 			}
+		},
+		{	name: "ToRGB",
+			description: "Converts an <code>r,g,b</code> decimal to hex #RRGGBB for use in CSS.",
+			orionHome: true, // hosted in your Orion, not the web
+			versions: {
+				"0.5": ["{OrionHome}/plugins/toRGBPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/toRGBPlugin.html"]
+			}
 		}
 		];
 
-	var TARGET = "target", VERSION = "version";
+	var TARGET = "target", VERSION = "version", ORION_HOME = "OrionHome";
 
 	(function() {
 		// Turn 'pluginsData' JSON structure into objects with behavior.
@@ -106,9 +113,20 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 			Plugin.prototype = {
 				getDescription: function() { return this.description; },
-				getInstallURL: function(version) {
+				getInstallURL: function(version, target, orionHome) {
 					var ver = this.getVersion(version);
-					return (ver && ver[0]) || null;
+					var url = (ver && ver[0]) || null;
+					if (this.orionHome) {
+						if (orionHome) {
+							url = new URITemplate(url).expand({
+								OrionHome: orionHome
+							});
+							url = decodeURIComponent(url); // i don't know
+						} else {
+							url = null; // no OrionHome param passed; can't install this
+						}
+					}
+					return url;
 				},
 				getSourceURL: function(version) {
 					var ver = this.getVersion(version);
@@ -194,27 +212,34 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					}
 				}
 			}
-			function getQualifiedInstallURL(target, /**Plugin*/ plugin, versionId) {
+			function getQualifiedInstallURL(target, /**Plugin*/ plugin, versionId, /*String?*/ orionHome) {
 				function qualify(url) {
 					var a = document.createElement('a');
 					a.href = url;
 					return a.href;
 				}
-				var url = plugin.getInstallURL(versionId);
-				return new URITemplate(target + "#{,resource,params*}").expand({
-					resource: "",
-					params: {
-						category: "plugins",
-						installPlugin: qualify(url)
-					}
-				});
+				var url = plugin.getInstallURL(versionId, target, orionHome);
+				if (url) {
+					return new URITemplate(target + "#{,resource,params*}").expand({
+						resource: "",
+						params: {
+							category: "plugins",
+							installPlugin: qualify(url)
+						}
+					});
+				}
+				return null;
 			}
 			function generatePluginCell(cell, plugin, versionId) {
 				var html = ""; 
 				var pluginVersion = plugin.getVersion(versionId);
 				if (params[TARGET] && pluginVersion) {
-					var url = getQualifiedInstallURL(params[TARGET], plugin, versionId);
-					html = '<a href="' + url + '" title="Install into Orion">Install</a>';
+					var url = getQualifiedInstallURL(params[TARGET], plugin, versionId, params[ORION_HOME]);
+					if (url) {
+						html = '<a href="' + url + '" title="Install into Orion">Install</a>';
+					} else {
+						html = "&ndash;";
+					}
 				} else {
 					if (pluginVersion) {
 						var installURL = plugin.getInstallURL(versionId), sourceURL = plugin.getSourceURL(versionId);
@@ -270,7 +295,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					// If TARGET is provided, only show plugins with an install URL for the version.
 					var versionId = params[VERSION], target = params[TARGET];
 					var versionMatch = !versionId || plugin.getVersion(versionId);
-					var installMatch = !versionId || !target || plugin.getInstallURL(versionId);
+					var installMatch = !versionId || !target || plugin.getInstallURL(versionId, null, params[ORION_HOME]);
 					return versionMatch && installMatch;
 				}), params);
 		}
