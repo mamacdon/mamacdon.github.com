@@ -97,7 +97,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			versions: {
 				"0.5": ["{OrionHome}/plugins/toRGBPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/toRGBPlugin.html"]
 			}
+		},
+		{	name: "Pixlr",
+			description: "Orion integration with <a href=''>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.",
+			versions: {
+				"0.5": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
+			}
 		}
+		// TODO unitTestplugin (when it works)
 		];
 
 	var TARGET = "target", VERSION = "version", ORION_HOME = "OrionHome";
