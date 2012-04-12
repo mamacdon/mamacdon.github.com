@@ -44,11 +44,12 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		//		"0.2|0.3": ["/0.2/plugins/language/languagejsPlugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.2/plugins/language/"],
 		//	}
 		//},
-		{	name: "JavaScript hierarchical outline",
+		{	name: "JavaScript outliner",
 			description: 'Provides a simple tree view of the functions in a JavaScript file.',
 			experimental: true,
 			versions: {
-				"0.3|0.4|0.5": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
+				"0.3|0.4": ["/0.4/plugins/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner/tree/v0.1"],
+				"0.5": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
 			}
 		},
 		{	name: "Nonymous outline",
