@@ -104,7 +104,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			versions: {
 				"0.5": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
 			}
-		}
+		},
+		{	name: "String Externalizer",
+			description: "Helps you externalize strings in your JavaScript code. <a href='http://dev.eclipse.org/mhonarc/lists/orion-dev/msg01710.html'>Read more here</a>.",
+			orionHome: true,
+			versions: {
+				"0.5": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
+			}
+		},
 		// TODO unitTestplugin (when it works)
 		];
 
