@@ -133,7 +133,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				getInstallURL: function(version, target, orionHome) {
 					var ver = this.getVersion(version);
 					var url = (ver && ver[0]) || null;
-					if (this.orionHome) {
+					if (this.orionHome && url) {
 						if (orionHome) {
 							url = new URITemplate(url).expand({
 								OrionHome: orionHome
