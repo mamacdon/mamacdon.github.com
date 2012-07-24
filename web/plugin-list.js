@@ -49,7 +49,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				"0.3|0.4": ["/0.4/plugins/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner/tree/v0.1"],
-				"0.5": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
+				"0.5": ["/0.5/plugins/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner/tree/v0.2"],
+				"1.0": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
 			}
 		},
 		{	name: "Nonymous outline",
