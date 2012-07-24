@@ -64,7 +64,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				"0.4": ["/0.4/plugins/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror/tree/v0.1.8"],
-				"0.5": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				"0.5": ["/0.5/plugins/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror/tree/v0.1.9"],
+				"1.0": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
 			}
 		},
 		{	name: "HTML Outline",
