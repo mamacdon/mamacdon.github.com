@@ -88,6 +88,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				"0.4|0.5": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"]
 			}
 		},
+		{	name: "HTML5 local filesystem",
+			description: 'Enables you to use Orion to work with files and folders in an <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/">HTML5 file system</a> stored on your local computer.',
+			orionHome: true,
+			versions: {
+				"1.0": ["{OrionHome}/plugins/HTML5LocalFilePlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html"]
+			}
+		},
 		{	name: "Amazon S3 filesystem",
 			description: "Provides access to an Amazon S3 bucket as a filesystem. See <a href='https://github.com/mamacdon/orion-s3/blob/master/README.md'>README</a> for installation instructions.",
 			versions: {
