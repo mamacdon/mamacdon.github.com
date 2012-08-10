@@ -85,7 +85,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			name: "Esprima content assist",
 			description: "Offers completion and type inference for JavaScript files.",
 			versions: {
-				"0.4|0.5": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", "https://github.com/aeisenberg/esprimaContentAssist"]
+				"0.4|0.5": ["/0.5/plugins/esprimaContentAssist/esprimaJsContentAssistPlugin.html", null],
+				"1.0": ["http://aeisenberg.github.com/esprimaContentAssist/esprimaJsContentAssistPlugin.html", null]
 			}
 		},
 		{	name: "HTML5 local filesystem",
