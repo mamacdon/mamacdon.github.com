@@ -6,7 +6,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "JS Beautify",
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
-				"0.5": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"]
+				"0.5": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"],
+				"1.0": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"],
 			}
 		},
 		{	name: "Uglify",
@@ -94,7 +95,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: "Helps you externalize strings in your JavaScript code. <a href='http://dev.eclipse.org/mhonarc/lists/orion-dev/msg01710.html'>Read more here</a>.",
 			orionHome: true,
 			versions: {
-				"0.5": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
+				"0.5": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"],
+				"1.0": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
 			}
 		},
 		// TODO unitTestplugin (when it works)
