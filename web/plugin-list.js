@@ -35,7 +35,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				"0.5": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
+				"0.5|1.0": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
 			}
 		},
 		{	name: "CodeMirror",
@@ -55,7 +55,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "Esprima outline",
 			description: 'Uses the <a href="http://esprima.org">esprima</a> JavaScript parser to provide a detailed outline of your JavaScript code.',
 			versions: {
-				"0.5": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
+				"0.5|1.0": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
 			}
 		},
 		{
