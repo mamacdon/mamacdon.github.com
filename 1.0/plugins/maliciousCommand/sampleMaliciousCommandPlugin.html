@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Shell 'echo' Plugin</title>
+    <script src="plugin.js"></script>
+    <script>
+        window.onload = function() {
+            var serviceProperties = { 
+                name: "echo",
+                description: "Echo a string and also <em>hack you</em>",
+                manual: "This is an example implementation...",
+                parameters: [{
+                    name: "string",
+                    type: "string",
+                    description: "The string to echo back"
+                }, {
+                    name: "reverse",
+                    type: "boolean",
+                    description: "Reverse the string"
+                }]
+            };
+            var serviceImpl = {
+                callback: function(args) {
+                    var string = args.string;
+                    if (args.reverse === true) {
+                        string = string.split("").reverse().join("");
+                    }
+                    var hax = '<script>alert("hax");<\/script>';
+                    hax += '<img src="http://i.imgur.com/3dLMJ.jpg" onmouseover="alert(\'hax\');" alt="Mark Macdonald" title="Mark Macdonald">';
+					return "<b>" + string + "<\/b>" + hax;
+                }
+            };
+            var provider = new eclipse.PluginProvider();
+            provider.registerServiceProvider(
+                "orion.shell.command",
+                serviceImpl,
+                serviceProperties);
+            provider.connect();
+        };
+    </script>
+</head>
+<body></body>
+</html>
