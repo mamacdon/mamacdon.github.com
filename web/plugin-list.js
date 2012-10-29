@@ -88,7 +88,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "Pixlr",
 			description: "Provides integration with <a href='http://www.pixlr.com/'>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.",
 			versions: {
-				"0.5": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
+				"0.5|1.0": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
 			}
 		},
 		{	name: "String Externalizer",
