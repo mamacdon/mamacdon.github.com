@@ -39,7 +39,7 @@
 
 .pluginTable {
 	border-spacing: 0;
-	width: 900px;
+	width: 100%
 }
 
 .pluginTable, .pluginTable tr, .pluginTable td, .pluginTable th {
