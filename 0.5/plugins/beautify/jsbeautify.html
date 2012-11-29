@@ -19,8 +19,9 @@
 			updated: function(properties) {
 				console.log('JS Beautifier updated...');
 				if (properties) {
-					indent_size = properties.indent_size;
-					indent_char = properties.indent_char;
+					var value = JSON.parse(properties.indent_style);
+					indent_size = value.indent_size;
+					indent_char = value.indent_char;
 				}
 			},
 			run: function(selectedText, text, selection) {
@@ -54,36 +55,23 @@
 		provider.registerServiceProvider("orion.core.setting", {}, {
 			settings: [{
 				pid: 'jsbeautify.config',
-				name: 'JS Beautifier',
-				tags: 'beautify javascript js jsbeautify'.split(' '),
+				name: 'Format JS',
+				tags: 'beautify javascript js jsbeautify formatting'.split(' '),
 				category: 'Formatting',
 				properties: [{
-					id: 'indent_size',
-					name: 'Indent size',
+					id: 'indent_style',
+					name: 'Indent Style',
 					defaultValue: 1,
 					options: [{
-						label: "1",
-						value: '1'
+						label: "1 Tab",
+						value: '{"indent_size": 1, "indent_char": "\\t"}'
 					}, {
-						label: "4",
-						value: '4'
-					}],
-					type: 'number'
-				}, {
-					id: 'indent_char',
-					name: 'Indent character',
-					defaultValue: '\t',
-					options: [{
-						label: "Space",
-						value: ' '
-					}, {
-						label: "Tab",
-						value: '\t'
+						label: "4 Spaces",
+						// Make sure the space character stay a space character.
+						value: '{"indent_size": 4, "indent_char": "\\u0020"}'
 					}],
 					type: 'string'
-				}
-
-				]
+				}]
 			}]
 		});
 		provider.connect();
