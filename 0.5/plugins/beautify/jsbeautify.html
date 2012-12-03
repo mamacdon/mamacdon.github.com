@@ -6,36 +6,74 @@
 	<script type="text/javascript" src="jsbeautify.js"></script>
 	<script type="text/javascript">
 	/*jslint onevar: false, plusplus: false */
-	
-	
-		
+
+
+
 	// The following registers the JS Beautifier with the Orion text editor:
 	window.onload = function() {
 		var provider = new eclipse.PluginProvider();
-		provider.registerServiceProvider("orion.edit.command", 
-			{
-				run : function(selectedText, text, selection) {
-					var toFormat;
-					var selectionEmpty = selection.start === selection.end;
-					if (selectionEmpty) {
-						toFormat = text;
-					} else {
-						toFormat = selectedText;
-					}
-					var formatted = js_beautify(toFormat, {indent_size: 1, indent_char: '\t'});
-					if (selectionEmpty) {
-						return {text:formatted};
-					} else {
-						return formatted;
-					}
+		var indent_size = 4;
+		var indent_char = ' ';
+		provider.registerServiceProvider(["orion.edit.command", "orion.cm.managedservice"], {
+			// ManagedService
+			updated: function(properties) {
+				console.log('JS Beautifier updated...');
+				if (properties) {
+					var value = JSON.parse(properties.indent_style);
+					indent_size = value.indent_size;
+					indent_char = value.indent_char;
 				}
 			},
-			{
-				name : "Format JS",
-				img : "http://www.jsbeautifier.org/favicon.ico",
-				key : [ "f", false, false, true ], // alt+f
-				contentType: ["application/javascript"]
-			});
+			run: function(selectedText, text, selection) {
+				var toFormat;
+				var selectionEmpty = selection.start === selection.end;
+				if (selectionEmpty) {
+					toFormat = text;
+				} else {
+					toFormat = selectedText;
+				}
+				var formatted = js_beautify(toFormat, {
+					indent_size: indent_size,
+					indent_char: indent_char
+				});
+				if (selectionEmpty) {
+					return {
+						text: formatted
+					};
+				} else {
+					return formatted;
+				}
+			}
+		}, {
+			name: "Format JS",
+			img: "http://www.jsbeautifier.org/favicon.ico",
+			key: ["f", false, false, true], // alt+f
+			//				contentType: ["application/javascript"]
+			contentType: ["application/javascript", "text/html"],
+			pid: "jsbeautify.config"
+		});
+		provider.registerServiceProvider("orion.core.setting", {}, {
+			settings: [{
+				pid: 'jsbeautify.config',
+				name: 'Format JS',
+				tags: 'beautify javascript js jsbeautify formatting'.split(' '),
+				category: 'Formatting',
+				properties: [{
+					id: 'indent_style',
+					name: 'Indent Style',
+					defaultValue: 1,
+					options: [{
+						label: "1 Tab",
+						value: '{"indent_size": 1, "indent_char": "\\t"}'
+					}, {
+						label: "4 Spaces",
+						// Make sure the space character stay a space character.
+						value: '{"indent_size": 4, "indent_char": "\\u0020"}'
+					}],
+					type: 'string'
+				}]
+			}]
+		});
 		provider.connect();
 	};
 	
