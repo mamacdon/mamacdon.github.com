@@ -7,14 +7,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
 				"0.5": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"],
-				"1.0": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"],
+				"1.0|2.0": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"]
 			}
 		},
 		{	name: "Uglify",
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
 				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"],*/
-				"0.5": ["/0.5/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify"]
+				"0.5|2.0": ["/0.5/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify"]
 			}
 		},
 		{	name: "Bugzilla",
@@ -28,14 +28,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				"0.5": ["/0.5/plugins/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner/tree/v0.2"],
-				"1.0": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
+				"1.0|2.0": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
 			}
 		},
 		{	name: "Nonymous outline",
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				"0.5|1.0": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
+				"0.5|1.0|2.0": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
 			}
 		},
 		{	name: "CodeMirror",
@@ -43,7 +43,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				"0.5": ["/0.5/plugins/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror/tree/v0.1.9"],
-				"1.0": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				"1.0|2.0": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
 			}
 		},
 		{	name: "HTML Outline",
@@ -55,12 +55,12 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "Esprima outline",
 			description: 'Uses the <a href="http://esprima.org">esprima</a> JavaScript parser to provide a detailed outline of your JavaScript code.',
 			versions: {
-				"0.5|1.0": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
+				"0.5|1.0|2.0": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
 			}
 		},
 		{
 			name: "Esprima content assist",
-			description: "Offers completion and type inference for JavaScript files. (Included with Orion by default starting in 1.0)",
+			description: "Offers completion and type inference for JavaScript files. (Comes included with Orion 1.0+)",
 			versions: {
 				"0.5": ["/0.5/plugins/esprimaContentAssist/esprimaJsContentAssistPlugin.html", null]
 			}
@@ -69,7 +69,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Enables you to use Orion to work with files and folders in an <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/">HTML5 file system</a> stored on your local computer.',
 			orionHome: true,
 			versions: {
-				"1.0": ["{OrionHome}/plugins/HTML5LocalFilePlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html"]
+				"1.0|2.0": ["{OrionHome}/plugins/HTML5LocalFilePlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html"]
 			}
 		},
 		{	name: "Amazon S3 filesystem",
@@ -88,17 +88,16 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: "Pixlr",
 			description: "Provides integration with <a href='http://www.pixlr.com/'>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.",
 			versions: {
-				"0.5|1.0": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
+				"0.5|1.0|2.0": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
 			}
 		},
 		{	name: "String Externalizer",
 			description: "Helps you externalize strings in your JavaScript code. <a href='http://dev.eclipse.org/mhonarc/lists/orion-dev/msg01710.html'>Read more here</a>.",
 			orionHome: true,
 			versions: {
-				"0.5": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"],
-				"1.0": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
+				"0.5|1.0|2.0": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
 			}
-		},
+		}
 		// TODO unitTestplugin (when it works)
 		];
 
