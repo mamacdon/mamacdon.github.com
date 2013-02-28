@@ -3,112 +3,119 @@
 
 define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 	var pluginsData = [
-		{	name: "JS Beautify",
+		{	name: 'JS Beautify',
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
-				"0.5": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"],
-				"1.0|2.0": ["/0.5/plugins/beautify/jsbeautify.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify"]
+				'0.5': ['/0.5/plugins/beautify/jsbeautify.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify'],
+				'1.0|2.0': ['/0.5/plugins/beautify/jsbeautify.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify']
 			}
 		},
-		{	name: "Uglify",
+		{	name: 'Uglify',
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
 				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"],*/
-				"0.5|2.0": ["/0.5/plugins/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify"]
+				'0.5|2.0': ['/0.5/plugins/uglify/uglify-plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify']
 			}
 		},
-		{	name: "Bugzilla",
+		{	name: 'Bugzilla',
 			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">Bugzilla integration</a> plugin for Orion.',
 			versions: {
-				"0.5": ["/0.3/plugins/bugzilla/plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla"]
+				'0.5': ['/0.3/plugins/bugzilla/plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla']
 			}
 		},
-		{	name: "JavaScript outliner",
+		{	name: 'JavaScript outliner',
 			description: 'Provides a simple tree view of the functions in a JavaScript file.',
 			experimental: true,
 			versions: {
-				"0.5": ["/0.5/plugins/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner/tree/v0.2"],
-				"1.0|2.0": ["http://mamacdon.github.com/outliner/outlinerPlugin.html", "https://github.com/mamacdon/outliner"]
+				'0.5': ['/0.5/plugins/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner/tree/v0.2'],
+				'1.0|2.0': ['http://mamacdon.github.com/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner']
 			}
 		},
-		{	name: "Nonymous outline",
+		{	name: 'Nonymous outline',
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				"0.5|1.0|2.0": ["http://johnjbarton.github.com/outliner/nonymousPlugin.html", "https://github.com/johnjbarton/outliner"]
+				'0.5|1.0|2.0': ['http://johnjbarton.github.com/outliner/nonymousPlugin.html', 'https://github.com/johnjbarton/outliner']
 			}
 		},
-		{	name: "CodeMirror",
+		{	name: 'CodeMirror',
 			description: 'Uses <a href="http://codemirror.net/">CodeMirror</a> modes to highlight your code.',
 			experimental: true,
 			versions: {
-				"0.5": ["/0.5/plugins/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror/tree/v0.1.9"],
-				"1.0|2.0": ["http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				'0.5': ['/0.5/plugins/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror/tree/v0.1.9'],
+				'1.0|2.0': ['http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror']
 			}
 		},
-		{	name: "HTML Outline",
+		{	name: 'HTML Outline',
 			description: 'Provides a hierarchical outline of the elements in an HTML file.',
 			versions: {
-				"0.5": ["http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html", "https://github.com/jarthorn/html-tools"]
+				'0.5': ['http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html', 'https://github.com/jarthorn/html-tools']
 			}
 		},
-		{	name: "Esprima outline",
+		{	name: 'Esprima outline',
 			description: 'Uses the <a href="http://esprima.org">esprima</a> JavaScript parser to provide a detailed outline of your JavaScript code.',
 			versions: {
-				"0.5|1.0|2.0": ["http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html", "https://github.com/aclement/esprima-outline"]
+				'0.5|1.0|2.0': ['http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html', 'https://github.com/aclement/esprima-outline']
 			}
 		},
 		{
-			name: "Esprima content assist",
-			description: "Offers completion and type inference for JavaScript files. (Comes included with Orion 1.0+)",
+			name: 'Esprima content assist',
+			description: 'Offers completion and type inference for JavaScript files. (Comes included with Orion 1.0+)',
 			versions: {
-				"0.5": ["/0.5/plugins/esprimaContentAssist/esprimaJsContentAssistPlugin.html", null]
+				'0.5': ['/0.5/plugins/esprimaContentAssist/esprimaJsContentAssistPlugin.html', null]
 			}
 		},
-		{	name: "HTML5 local filesystem",
+		{	name: 'HTML5 local filesystem',
 			description: 'Enables you to use Orion to work with files and folders in an <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/">HTML5 file system</a> stored on your local computer.',
 			orionHome: true,
 			versions: {
-				"1.0|2.0": ["{OrionHome}/plugins/HTML5LocalFilePlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html"]
+				'1.0|2.0': ['{OrionHome}/plugins/HTML5LocalFilePlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html']
 			}
 		},
-		{	name: "Amazon S3 filesystem",
-			description: "Provides access to an Amazon S3 bucket as a filesystem. See <a href='https://github.com/mamacdon/orion-s3/blob/master/README.md'>README</a> for installation instructions.",
+		{	name: 'Amazon S3 filesystem',
+			description: 'Provides access to an Amazon S3 bucket as a filesystem. See <a href=\'https://github.com/mamacdon/orion-s3/blob/master/README.md\'>README</a> for installation instructions.',
 			versions: {
-				"0.5": [null, "https://github.com/mamacdon/orion-s3/"]
+				'0.5': [null, 'https://github.com/mamacdon/orion-s3/']
 			}
 		},
-		{	name: "ToRGB",
-			description: "Converts an <code>r,g,b</code> decimal to hex #RRGGBB for use in CSS.",
+		{	name: 'ToRGB',
+			description: 'Converts an <code>r,g,b</code> decimal to hex #RRGGBB for use in CSS.',
 			orionHome: true, // hosted in your Orion, not the web
 			versions: {
-				"0.5": ["{OrionHome}/plugins/toRGBPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/toRGBPlugin.html"]
+				'0.5': ['{OrionHome}/plugins/toRGBPlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/toRGBPlugin.html']
 			}
 		},
-		{	name: "Pixlr",
-			description: "Provides integration with <a href='http://www.pixlr.com/'>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.",
+		{	name: 'Pixlr',
+			description: 'Provides integration with <a href=\'http://www.pixlr.com/\'>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.',
 			versions: {
-				"0.5|1.0|2.0": ["http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html", "https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html"]
+				'0.5|1.0|2.0': ['http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html', 'https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html']
 			}
 		},
-		{	name: "String Externalizer",
-			description: "Helps you externalize strings in your JavaScript code. <a href='http://dev.eclipse.org/mhonarc/lists/orion-dev/msg01710.html'>Read more here</a>.",
+		{	name: 'String Externalizer',
+			description: 'Helps you externalize strings in your JavaScript code. <a href=\'http://dev.eclipse.org/mhonarc/lists/orion-dev/msg01710.html\'>Read more here</a>.',
 			orionHome: true,
 			versions: {
-				"0.5|1.0|2.0": ["{OrionHome}/plugins/nonnlsPlugin.html", "https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html"]
+				'0.5|1.0|2.0': ['{OrionHome}/plugins/nonnlsPlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html']
 			}
 		},
-		{	name: "Snippet",
-			description: "Editor command to create an HTML code snippet from a selection in your editor. <a href='http://kenwalker.github.com/snippet/Snippet.html'>Read more here</a>.",
+		{	name: 'Snippet',
+			description: 'Editor command to create an HTML code snippet from a selection in your editor. <a href=\'http://kenwalker.github.com/snippet/Snippet.html\'>Read more here</a>.',
 			orionHome: false,
 			versions: {
-				"2.0": ["http://kenwalker.github.com/snippet/Snippet.html", "https://github.com/kenwalker/snippet"]
+				'2.0': ['http://kenwalker.github.com/snippet/Snippet.html', 'https://github.com/kenwalker/snippet']
+			}
+		},
+		{	name: 'Double2Single',
+			description: 'Editor command to convert double quotes to single. <a href=\'http://kenwalker.github.com/Double2Single/Double2Single.html\'>Read more here</a>.',
+			orionHome: false,
+			versions: {
+				'2.0': ['http://kenwalker.github.com/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
 			}
 		}
 		// TODO unitTestplugin (when it works)
 		];
 
-	var TARGET = "target", VERSION = "version", ORION_HOME = "OrionHome";
+	var TARGET = 'target', VERSION = 'version', ORION_HOME = 'OrionHome';
 
 	(function() {
 		// Turn 'pluginsData' JSON structure into objects with behavior.
@@ -145,7 +152,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					var keys = Object.keys(this.versions);
 					for (var i=0; i < keys.length; i++) {
 						var ver = keys[i];
-						if (ver.split("|").indexOf(versionId) !== -1) {
+						if (ver.split('|').indexOf(versionId) !== -1) {
 							return this.versions[ver];
 						}
 					}
@@ -155,7 +162,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 					var versions = Object.keys(this.versions);
 					var keys = [];
 					for (var i=0; i < versions.length; i++) {
-						var vs = versions[i].split("|");
+						var vs = versions[i].split('|');
 						for (var j=0; j < vs.length; j++) {
 							keys.push(vs[j]);
 						}
@@ -194,7 +201,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				var array = hash.split(/\?|,|&|(=)/);
 				for (var i=0; i < array.length; i++) {
 					var key = array[i];
-					if (key && array[i + 1] === "=") {
+					if (key && array[i + 1] === '=') {
 						params[key] = array[i + 2];
 						i++;
 					}
@@ -205,17 +212,17 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		function createTbody(table, plugins, params) {
 			function createHeaderRow(table, versions) {
 				var headerRow = table.insertRow(-1);
-				var th = document.createElement("th");
-				th.innerHTML = "";
+				var th = document.createElement('th');
+				th.innerHTML = '';
 				headerRow.appendChild(th);
 				if (params[VERSION]) {
-					th = document.createElement("th");
-					th.innerHTML = "";
+					th = document.createElement('th');
+					th.innerHTML = '';
 					headerRow.appendChild(th);
 				} else {
 					for (var i=0; i < versions.length; i++) {
-						th = document.createElement("th");
-						th.innerHTML = "Orion " + versions[i];
+						th = document.createElement('th');
+						th.innerHTML = 'Orion ' + versions[i];
 						headerRow.appendChild(th);
 					}
 				}
@@ -228,10 +235,10 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				}
 				var url = plugin.getInstallURL(versionId, target, orionHome);
 				if (url) {
-					return new URITemplate(target + "#{,resource,params*}").expand({
-						resource: "",
+					return new URITemplate(target + '#{,resource,params*}').expand({
+						resource: '',
 						params: {
-							category: "plugins",
+							category: 'plugins',
 							installPlugin: qualify(url)
 						}
 					});
@@ -239,14 +246,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				return null;
 			}
 			function generatePluginCell(cell, plugin, versionId) {
-				var html = ""; 
+				var html = ''; 
 				var pluginVersion = plugin.getVersion(versionId);
 				if (params[TARGET] && pluginVersion) {
 					var url = getQualifiedInstallURL(params[TARGET], plugin, versionId, params[ORION_HOME]);
 					if (url) {
 						html = '<a href="' + url + '" title="Install into Orion">Install</a>';
 					} else {
-						html = "&ndash;";
+						html = '&ndash;';
 					}
 				} else {
 					if (pluginVersion) {
@@ -258,8 +265,8 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 							html += '<div class="pluginSource"><a href="' + sourceURL + '">Source</a></div>';
 						}
 					} else {
-						html = "&ndash;";
-						cell.title = "Not available for Orion " + versionId;
+						html = '&ndash;';
+						cell.title = 'Not available for Orion ' + versionId;
 					}
 				}
 				cell.innerHTML = html;
@@ -279,13 +286,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				var cell, versionId;
 				if (params[VERSION]) {
 					cell = row.insertCell(-1);
-					cell.className = "dl";
+					cell.className = 'dl';
 					versionId = params[VERSION];
 					generatePluginCell(cell, plugin, versionId);
 				} else {
 					for (var j=0; j < versions.length; j++) {
 						cell = row.insertCell(-1);
-						cell.className = "dl";
+						cell.className = 'dl';
 						versionId = versions[j];
 						generatePluginCell(cell, plugin, versionId);
 					}
@@ -293,7 +300,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 		}
 		function createTable() {
-			var table = document.getElementById("pluginTable");
+			var table = document.getElementById('pluginTable');
 			while (table.firstChild) {
 				table.removeChild(table.firstChild);
 			}
@@ -308,7 +315,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				}), params);
 		}
 		// Initialization starts here
-		window.addEventListener("hashchange", createTable, false);
+		window.addEventListener('hashchange', createTable, false);
 
 		createTable();
 	}());
