@@ -98,6 +98,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 				'0.5|1.0|2.0': ['{OrionHome}/plugins/nonnlsPlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/nonnlsPlugin.html']
 			}
 		},
+		{	name: 'Projects Prototype',
+			description: 'Enable the prototype of supporting Projects within Orion. Adds a banner item for Projects',
+			orionHome: true,
+			versions: {
+				'2.0': ['{OrionHome}/plugins/projectsPlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.ui/web/plugins/projectsPlugin.html']
+			}
+		},
 		{	name: 'Snippet',
 			description: 'Editor command to create an HTML code snippet from a selection in your editor. <a href=\'http://kenwalker.github.com/snippet/Snippet.html\'>Read more here</a>.',
 			orionHome: false,
