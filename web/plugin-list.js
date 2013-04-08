@@ -28,14 +28,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				'0.5': ['/0.5/plugins/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner/tree/v0.2'],
-				'1.0|2.0': ['http://mamacdon.github.com/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner']
+				'1.0|2.0': ['http://mamacdon.github.io/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner']
 			}
 		},
 		{	name: 'Nonymous outline',
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				'0.5|1.0|2.0': ['http://johnjbarton.github.com/outliner/nonymousPlugin.html', 'https://github.com/johnjbarton/outliner']
+				'0.5|1.0|2.0': ['http://johnjbarton.github.io/outliner/nonymousPlugin.html', 'https://github.com/johnjbarton/outliner']
 			}
 		},
 		{	name: 'CodeMirror',
@@ -43,19 +43,19 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				'0.5': ['/0.5/plugins/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror/tree/v0.1.9'],
-				'1.0|2.0': ['http://mamacdon.github.com/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror']
+				'1.0|2.0': ['http://mamacdon.github.io/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror']
 			}
 		},
 		{	name: 'HTML Outline',
 			description: 'Provides a hierarchical outline of the elements in an HTML file.',
 			versions: {
-				'0.5': ['http://jarthorn.github.com/html-tools/htmlOutlinePlugin.html', 'https://github.com/jarthorn/html-tools']
+				'0.5': ['http://jarthorn.github.io/html-tools/htmlOutlinePlugin.html', 'https://github.com/jarthorn/html-tools']
 			}
 		},
 		{	name: 'Esprima outline',
 			description: 'Uses the <a href="http://esprima.org">esprima</a> JavaScript parser to provide a detailed outline of your JavaScript code.',
 			versions: {
-				'0.5|1.0|2.0': ['http://aclement.github.com/esprima-outline/esprimaOutlinerPlugin.html', 'https://github.com/aclement/esprima-outline']
+				'0.5|1.0|2.0': ['http://aclement.github.io/esprima-outline/esprimaOutlinerPlugin.html', 'https://github.com/aclement/esprima-outline']
 			}
 		},
 		{
@@ -88,7 +88,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 		{	name: 'Pixlr',
 			description: 'Provides integration with <a href=\'http://www.pixlr.com/\'>Pixlr</a>, the online image editor. Allows Pixlr to open images from your Orion workspace, and save files back to Orion.',
 			versions: {
-				'0.5|1.0|2.0': ['http://sfmccourt.github.com/plugins/pixlr/pixlrPlugin.html', 'https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html']
+				'0.5|1.0|2.0': ['http://sfmccourt.github.io/plugins/pixlr/pixlrPlugin.html', 'https://github.com/sfmccourt/sfmccourt.github.com/blob/master/plugins/pixlr/pixlrPlugin.html']
 			}
 		},
 		{	name: 'String Externalizer',
@@ -106,17 +106,17 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			}
 		},
 		{	name: 'Snippet',
-			description: 'Editor command to create an HTML code snippet from a selection in your editor. <a href=\'http://kenwalker.github.com/snippet/Snippet.html\'>Read more here</a>.',
+			description: 'Editor command to create an HTML code snippet from a selection in your editor. <a href=\'http://kenwalker.github.io/snippet/Snippet.html\'>Read more here</a>.',
 			orionHome: false,
 			versions: {
-				'2.0': ['http://kenwalker.github.com/snippet/Snippet.html', 'https://github.com/kenwalker/snippet']
+				'2.0': ['http://kenwalker.github.io/snippet/Snippet.html', 'https://github.com/kenwalker/snippet']
 			}
 		},
 		{	name: 'Double2Single',
-			description: 'Editor command to convert double quotes to single. <a href=\'http://kenwalker.github.com/Double2Single/Double2Single.html\'>Read more here</a>.',
+			description: 'Editor command to convert double quotes to single. <a href=\'http://kenwalker.github.io/Double2Single/Double2Single.html\'>Read more here</a>.',
 			orionHome: false,
 			versions: {
-				'2.0': ['http://kenwalker.github.com/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
+				'2.0': ['http://kenwalker.github.io/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
 			}
 		}
 		// TODO unitTestplugin (when it works)
