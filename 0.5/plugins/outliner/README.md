@@ -5,7 +5,7 @@ A few simple heuristics are used to infer the names of anonymous functions.
 Installing into Orion
 ---------------------
 1. Log in to Orion, and click the Plugins link on the global toolbar.
-2. Paste [http://mamacdon.github.com/outliner/outlinerPlugin.html](http://mamacdon.github.com/outliner/outlinerPlugin.html) into the text box and click Install.
+2. Paste [http://mamacdon.github.io/outliner/outlinerPlugin.html](http://mamacdon.github.io/outliner/outlinerPlugin.html) into the text box and click Install.
    After a moment, you should see a success message.
 3. Open a JavaScript file in the Orion editor. You should now see a drop-down menu in the outline pane.
 4. Click the drop-down arrow and choose "Hierarchical outliner".
