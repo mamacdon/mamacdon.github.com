@@ -7,20 +7,20 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Cleans up the formatting of your JavaScript code using <a href="http://jsbeautifier.org/">jsbeautifier</a>.',
 			versions: {
 				'0.5': ['/0.5/plugins/beautify/jsbeautify.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify'],
-				'1.0|2.0': ['/0.5/plugins/beautify/jsbeautify.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify']
+				'1.0|2.0|3.0': ['/0.5/plugins/beautify/jsbeautify.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/beautify']
 			}
 		},
 		{	name: 'Uglify',
 			description: 'Minifies your JavaScript code using <a href="https://github.com/mishoo/UglifyJS">uglify-js</a>.',
 			versions: {
 				/*"0.2 M6/M7": ["/m6/uglify/uglify-plugin.html", "https://github.com/mamacdon/mamacdon.github.com/tree/master/m6/uglify"],*/
-				'0.5|2.0': ['/0.5/plugins/uglify/uglify-plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify']
+				'0.5|2.0|3.0': ['/0.5/plugins/uglify/uglify-plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.5/plugins/uglify']
 			}
 		},
 		{	name: 'Bugzilla',
 			description: 'A <a href="http://dev.eclipse.org/mhonarc/lists/orion-dev/msg00688.html">Bugzilla integration</a> plugin for Orion.',
 			versions: {
-				'0.5': ['/0.3/plugins/bugzilla/plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla']
+				'0.5|2.0|3.0': ['/0.3/plugins/bugzilla/plugin.html', 'https://github.com/mamacdon/mamacdon.github.com/tree/master/0.3/plugins/bugzilla']
 			}
 		},
 		{	name: 'JavaScript outliner',
@@ -28,14 +28,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				'0.5': ['/0.5/plugins/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner/tree/v0.2'],
-				'1.0|2.0': ['http://mamacdon.github.io/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner']
+				'1.0|2.0|3.0': ['http://mamacdon.github.io/outliner/outlinerPlugin.html', 'https://github.com/mamacdon/outliner']
 			}
 		},
 		{	name: 'Nonymous outline',
 			description: 'Provides a tree view of JavaScript functions using the \"Function-Object Consumption\" algorithm to generate meaningful names for anonymous functions.',
 			experimental: true,
 			versions: {
-				'0.5|1.0|2.0': ['http://johnjbarton.github.io/outliner/nonymousPlugin.html', 'https://github.com/johnjbarton/outliner']
+				'0.5|1.0|2.0|3.0': ['http://johnjbarton.github.io/outliner/nonymousPlugin.html', 'https://github.com/johnjbarton/outliner']
 			}
 		},
 		{	name: 'CodeMirror',
@@ -43,7 +43,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			experimental: true,
 			versions: {
 				'0.5': ['/0.5/plugins/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror/tree/v0.1.9'],
-				'1.0|2.0': ['http://mamacdon.github.io/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror']
+				'1.0|2.0|3.0': ['http://mamacdon.github.io/orion-codemirror/codeMirrorPlugin.html', 'https://github.com/mamacdon/orion-codemirror']
 			}
 		},
 		{	name: 'HTML Outline',
@@ -69,7 +69,7 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Enables you to use Orion to work with files and folders in an <a href="http://dev.w3.org/2009/dap/file-system/pub/FileSystem/">HTML5 file system</a> stored on your local computer.',
 			orionHome: true,
 			versions: {
-				'1.0|2.0': ['{OrionHome}/plugins/HTML5LocalFilePlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html']
+				'1.0|2.0|3.0': ['{OrionHome}/plugins/HTML5LocalFilePlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.core/web/plugins/HTML5LocalFilePlugin.html']
 			}
 		},
 		{	name: 'Amazon S3 filesystem',
@@ -109,14 +109,14 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			description: 'Editor command to create an HTML code snippet from a selection in your editor. <a href=\'http://kenwalker.github.io/snippet/Snippet.html\'>Read more here</a>.',
 			orionHome: false,
 			versions: {
-				'2.0': ['http://kenwalker.github.io/snippet/Snippet.html', 'https://github.com/kenwalker/snippet']
+				'2.0|3.0': ['http://kenwalker.github.io/snippet/Snippet.html', 'https://github.com/kenwalker/snippet']
 			}
 		},
 		{	name: 'Double2Single',
 			description: 'Editor command to convert double quotes to single. <a href=\'http://kenwalker.github.io/Double2Single/Double2Single.html\'>Read more here</a>.',
 			orionHome: false,
 			versions: {
-				'2.0': ['http://kenwalker.github.io/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
+				'2.0|3.0': ['http://kenwalker.github.io/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
 			}
 		}
 		// TODO unitTestplugin (when it works)
