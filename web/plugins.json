@@ -36,7 +36,7 @@
 			"description": "Uses <a href=\"http://codemirror.net/\">CodeMirror</a> modes to highlight your code.",
 			"experimental": true,
 			"versions": {
-				"1.0|2.0": ["http://mamacdon.github.io/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
+				">=1.0": ["http://mamacdon.github.io/orion-codemirror/codeMirrorPlugin.html", "https://github.com/mamacdon/orion-codemirror"]
 			}
 		},
 		{	"name": "HTML Outline",
