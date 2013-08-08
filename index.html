@@ -4,7 +4,17 @@
 		<meta charset="utf-8">
 		<title>Orion Plugins and Tools</title>
 		<link rel="stylesheet" href="web/plugin-list.css" />
-		<script data-main="web/plugin-list" src="web/require/require.js"></script>
+		<script src="web/require/require.js"></script>
+		<script>
+			require({
+				baseUrl: "web",
+				paths: {
+					domReady: "require/domReady",
+					text: "require/text"
+				}
+			});
+			require(["plugin-list"]);
+		</script>
 	</head>
 <body class="body">
 	<div class="staticBanner">
