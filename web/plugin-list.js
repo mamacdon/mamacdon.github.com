@@ -118,6 +118,13 @@ define(['orion/URITemplate', 'domReady!'], function(URITemplate, document) {
 			versions: {
 				'2.0': ['http://kenwalker.github.io/Double2Single/Double2Single.html', 'https://github.com/kenwalker/Double2Single']
 			}
+		},
+		{	name: 'Line Delimiter Converter',
+			description: 'This plugin provides a editor commands to convert line delimiters to DOS or UNIX.',
+			orionHome: true,
+			versions: {
+				'0.5|1.0|2.0': ['{OrionHome}/plugins/delimiterPlugin.html', 'https://github.com/eclipse/orion.client/blob/master/bundles/org.eclipse.orion.client.ui/web/plugins/delimiterPlugin.js']
+			}
 		}
 		// TODO unitTestplugin (when it works)
 		];
