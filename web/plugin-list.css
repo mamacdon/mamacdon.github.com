@@ -42,9 +42,21 @@
 	width: 100%
 }
 
+.pluginTable th {
+	background-color: #fafafa;
+}
+
 .pluginTable, .pluginTable tr, .pluginTable td, .pluginTable th {
 	border-bottom: 1px solid #E6E6E6;
 	border-right: 1px solid #E6E6E6;
+}
+
+.pluginTable tr:first-child th {
+	border-top: 1px solid #E6E6E6;
+}
+
+.pluginTable tr>th:first-child, .pluginTable tr>td:first-child {
+	border-left: 1px solid #E6E6E6;
 }
 
 .pluginTable td, .pluginTable th {
